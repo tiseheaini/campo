@@ -28,3 +28,7 @@
 
 # Ignore deploy config.
 /config/deploy
+
+# Ignore database and secrets config.
+*.swp
+*.swo
