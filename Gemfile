@@ -3,9 +3,12 @@ source 'https://ruby.taobao.org/'
 
 gem 'rails', '4.1.1'
 
+gem 'net-ssh', '~>2.7.0'
+
 # Use postgresql as the database for Active Record
 #gem 'pg'
 gem 'mysql2'
+gem 'unicorn'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -95,10 +98,8 @@ group :development do
   gem 'i18n-tasks', '~> 0.3.2'
 
   # Deploy tool
-  gem 'capistrano', '~> 3.1.0'
-  gem 'capistrano-rvm', '~> 0.1.1'
-  gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-rails', '~> 1.0.0'
+  gem 'capistrano', '2.15.4'
+  gem 'rvm-capistrano'
 end
 
 group :development, :test do
