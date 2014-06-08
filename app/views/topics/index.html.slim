@@ -30,6 +30,7 @@
 
           .panel-body
             .list-group.list-group-campo.recordable
+              = render partial: "project"
               - if @topics.any?
                 = render @topics
               - else
