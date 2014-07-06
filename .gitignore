@@ -27,4 +27,4 @@
 /.vagrant
 
 # Ignore deploy config.
-/config/deploy
+/config/deploy.rb
