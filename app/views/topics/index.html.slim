@@ -41,14 +41,13 @@
                 = paginate @topics, theme: 'campo'
 
       .col-md-3
-        = render 'search_form'
         .panel
           .panel-body
             a.btn.btn-success.btn-block href=new_topic_path(category_id: @category.try(:slug))
               = t '.create_topic'
         .panel
           .panel-body
-            ul.nav.nav-pills.nav-stacked
+            ul.nav.nav-pills.nav-stacked.text-center
               li class=('active' unless @category)
                 a href=topics_path
                   = t '.all_categories'
