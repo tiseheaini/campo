@@ -21,7 +21,7 @@ zh-CN:
         created_at: "创建于"
         email: Email
         locale: "语言"
-        name: "全名"
+        name: "姓名"
         password: "密码"
         password_confirmation: "密码确认"
         username: "用户名"
@@ -321,7 +321,7 @@ zh-CN:
       pick_a_username: "挑一个用户名"
       sign_up: "注册"
       your_email: "你的邮箱地址"
-      your_full_name: "你的全名"
+      your_full_name: "你的真实姓名"
     passwords:
       edit:
         password_reset: "密码重置"
