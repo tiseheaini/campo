@@ -24,6 +24,9 @@ module Campo
     # Wait for fix https://github.com/rails/rails/issues/13164
     I18n.config.enforce_available_locales = false
 
+    # sendmail config
+    config.action_mailer.default_url_options = { host: 'c2qu.com' }
+
     config.generators do |g|
       g.assets false
       g.helper false
