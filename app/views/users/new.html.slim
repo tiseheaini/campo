@@ -11,13 +11,13 @@
               = render 'share/form_error_messages', form: f
               .form-group
                 = f.label :username, class: 'control-label'
-                = f.text_field :username, placeholder: t('.pick_a_username'), tabindex: 3, class: 'form-control'
+                = f.text_field :username, placeholder: t('.pick_a_username'), tabindex: 1, class: 'form-control'
               .form-group
                 = f.label :name, class: 'control-label'
-                = f.text_field :name, placeholder: t('.your_full_name'), tabindex: 1, class: 'form-control'
+                = f.text_field :name, placeholder: t('.your_full_name'), tabindex: 2, class: 'form-control'
               .form-group
                 = f.label :email, class: 'control-label'
-                = f.text_field :email, placeholder: t('.your_email'), tabindex: 2, class: 'form-control'
+                = f.text_field :email, placeholder: t('.your_email'), tabindex: 3, class: 'form-control'
               .form-group
                 = f.label :password, class: 'control-label'
                 = f.password_field :password, placeholder: t('.choose_a_password'), tabindex: 4, class: 'form-control'
@@ -26,6 +26,11 @@
 javascript:
   $('#new-user-form').validate({
     rules: {
+      'user[username]': {
+        required: true,
+        remote: '/users/check_username',
+        format: /^[a-z0-9-]+$/i
+      },
       'user[name]': {
         required: true,
       },
@@ -33,11 +38,6 @@ javascript:
         required: true,
         format: /^([^@\s]+)@((?:[a-z0-9-]+\.)+[a-z]{2,})$/i,
         remote: '/users/check_email'
-      },
-      'user[username]': {
-        required: true,
-        remote: '/users/check_username',
-        format: /^[a-z0-9-]+$/i
       },
       'user[password]': {
         required: true
