@@ -11,8 +11,8 @@ class TopicsController < ApplicationController
     end
 
     # Set default tab
-    unless %w(hot newest).include? params[:tab]
-      params[:tab] = 'hot'
+    unless %w(default hot newest).include? params[:tab]
+      params[:tab] = 'default'
     end
 
     case params[:tab]
@@ -20,6 +20,8 @@ class TopicsController < ApplicationController
       @topics = @topics.order(hot: :desc)
     when 'newest'
       @topics = @topics.order(id: :desc)
+    when 'default'
+      @topics = @topics.order(updated_at: :desc)
     end
   end
 

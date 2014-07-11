@@ -15,6 +15,9 @@
           .panel-heading.clearfix
             .pull-right
               ul.nav.nav-pills
+                li class=('active' if params[:tab] == 'default')
+                  a href=url_for(tab: 'default')
+                    = t '.default'
                 li class=('active' if params[:tab] == 'hot')
                   a href=url_for(tab: 'hot')
                     = t '.hot'
