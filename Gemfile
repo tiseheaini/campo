@@ -58,10 +58,6 @@ gem 'nokogiri', '~> 1.6.1'
 # Gravatar
 gem 'gravtastic', '~> 3.2.6'
 
-# Elasticsearch
-gem 'elasticsearch-model', '~> 0.1.0'
-gem 'elasticsearch-rails', '~> 0.1.0'
-
 # File upload
 gem 'carrierwave', '~> 0.9.0'
 gem 'mini_magick', '~> 3.7.0'

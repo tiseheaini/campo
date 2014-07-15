@@ -7,7 +7,6 @@ bundler_args: --without production development
 
 services:
   - redis-server
-  - elasticsearch
   - memcached
 
 before_script:

@@ -69,19 +69,6 @@ GEM
       json
       thread
       thread_safe
-    elasticsearch (1.0.1)
-      elasticsearch-api (= 1.0.1)
-      elasticsearch-transport (= 1.0.1)
-    elasticsearch-api (1.0.1)
-      multi_json
-    elasticsearch-model (0.1.0)
-      activesupport (> 3)
-      elasticsearch (> 0.4)
-      hashie
-    elasticsearch-rails (0.1.0)
-    elasticsearch-transport (1.0.1)
-      faraday
-      multi_json
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.5.3)
@@ -93,8 +80,6 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
-    faraday (0.9.0)
-      multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
     font-awesome-sass (4.0.2)
       sass-rails (>= 3.1.1)
@@ -110,7 +95,6 @@ GEM
       em-websocket (~> 0.5)
       guard (~> 2.0)
       multi_json (~> 1.8)
-    hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
     hiredis (0.4.5)
@@ -151,7 +135,6 @@ GEM
     minitest (5.3.2)
     mono_logger (1.1.0)
     multi_json (1.9.2)
-    multipart-post (2.0.0)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -267,8 +250,6 @@ DEPENDENCIES
   capistrano-rbenv (= 1.0.5)
   carrierwave (~> 0.9.0)
   coffee-rails (~> 4.0.0)
-  elasticsearch-model (~> 0.1.0)
-  elasticsearch-rails (~> 0.1.0)
   factory_girl_rails (~> 4.3.0)
   font-awesome-sass (~> 4.0.2)
   gravtastic (~> 3.2.6)
