@@ -28,3 +28,6 @@
 
 # Ignore deploy config.
 /config/deploy.rb
+
+# Ignore .DS_Store
+**/.DS_Store
