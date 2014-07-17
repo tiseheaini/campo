@@ -3,6 +3,8 @@
   - @page_title = t('.hot_topics')
 - when 'newest'
   - @page_title = t('.newest_topics')
+- when 'default'
+  - @page_title = t('.default')
 
 - if @category
   - @page_title += " #{@category.name}"
