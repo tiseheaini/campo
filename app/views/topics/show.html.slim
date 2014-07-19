@@ -16,9 +16,7 @@
                   .list-group-item-content
                     .list-group-item-heading
                       a.comment-user href=user_link(@topic.user)
-                        b = @topic.user.name
-                        '
-                        = "@#{@topic.user.username}"
+                        = @topic.user.username
                       = ' · '
                       a href=topic_path(@topic)
                         = time_ago_tag @topic.created_at
@@ -68,9 +66,7 @@
                     .list-group-item-content
                       .list-group-item-heading
                         a.comment-user href=user_link(current_user)
-                          b = current_user.name
-                          '
-                          = "@#{current_user.username}"
+                          = current_user.username
                       = form_for @topic.comments.new, url: topic_comments_path(@topic), remote: true do |f|
                         .form-group
                           = markdown_area f, :body
