@@ -18,7 +18,7 @@
                   .caption
                     h4.text-hide-overflow = attachment['file']
                     a.text-muted href=admin_user_path(attachment.user)
-                      = attachment.user.name
+                      = attachment.user.username
                     a.pull-right.text-muted href=admin_attachment_path(attachment) data-remote="true" data-method="delete" data-confirm=t('.delete_confirm')
                       i.fa.fa-times
             .clearfix
