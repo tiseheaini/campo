@@ -13,9 +13,6 @@
                 = f.label :username, class: 'control-label'
                 = f.text_field :username, placeholder: t('.pick_a_username'), tabindex: 1, class: 'form-control'
               .form-group
-                = f.label :name, class: 'control-label'
-                = f.text_field :name, placeholder: t('.your_full_name'), tabindex: 2, class: 'form-control'
-              .form-group
                 = f.label :email, class: 'control-label'
                 = f.text_field :email, placeholder: t('.your_email'), tabindex: 3, class: 'form-control'
               .form-group
@@ -31,9 +28,6 @@ javascript:
         remote: '/users/check_username',
         format: /^[a-z0-9-]+$/i
       },
-      'user[name]': {
-        required: true,
-      },
       'user[email]': {
         required: true,
         format: /^([^@\s]+)@((?:[a-z0-9-]+\.)+[a-z]{2,})$/i,
@@ -44,18 +38,15 @@ javascript:
       }
     },
     messages: {
-      'user[name]': {
-        required: '#{@user.errors.generate_message :name, :blank}'
+      'user[username]': {
+        required: '#{@user.errors.generate_message :username, :blank}',
+        remote: '#{@user.errors.generate_message :username, :taken}',
+        format: '#{@user.errors.generate_message :username, :format}'
       },
       'user[email]': {
         required: '#{@user.errors.generate_message :email, :blank}',
         remote: '#{@user.errors.generate_message :email, :taken}',
         format: '#{@user.errors.generate_message :email, :format}'
-      },
-      'user[username]': {
-        required: '#{@user.errors.generate_message :username, :blank}',
-        remote: '#{@user.errors.generate_message :username, :taken}',
-        format: '#{@user.errors.generate_message :username, :format}'
       },
       'user[password]': {
         required: '#{@user.errors.generate_message :password, :blank}'
