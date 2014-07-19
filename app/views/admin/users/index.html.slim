@@ -26,9 +26,13 @@
                   .list-group-item-heading
                     = user.id
                     = '. '
-                    b = user.name
-                    '
-                    span.text-muted = "@#{user.username}"
+                    span.text-muted = user.username
+                    - if user.name
+                      '
+                      = "#{user.name}"
+                    - else
+                      '
+                      = "木有名字"
                   .text-muted
                     = user.email
                     = ' · '
