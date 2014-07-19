@@ -4,6 +4,12 @@
       img.img-rounded alt="avatar" src=user.avatar.bigger.url
     .user-profile-name
       span.text-muted = user.username
+      - if user.name
+        '
+        b = user.name
+      - else
+        '
+        b = "木有名字"
     .user-profile-bio
       = simple_format user.bio
 
