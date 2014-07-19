@@ -3,9 +3,7 @@
     .user-profile-avatar
       img.img-rounded alt="avatar" src=user.avatar.bigger.url
     .user-profile-name
-      = user.name
-      '
-      span.text-muted = "@#{user.username}"
+      span.text-muted = user.username
     .user-profile-bio
       = simple_format user.bio
 
