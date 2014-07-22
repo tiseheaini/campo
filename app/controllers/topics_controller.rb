@@ -5,6 +5,11 @@ class TopicsController < ApplicationController
   def index
     @topics = Topic.includes(:user, :category).page(params[:page])
 
+    # puts @topics_views_hash # topics 访问量
+    # => { "topics:5:views" : "5", "topics:2:views" : null, "topics:8:views" : "1" }
+    redis_topic_keys = @topics.map {|topic| "topics:#{topic.id}:views" }
+    @topics_views_hash = (Hash[redis_topic_keys.zip $redis.mget(redis_topic_keys)]).to_json
+
     if params[:category_id]
       @category = Category.where('lower(slug) = ?', params[:category_id].downcase).first!
       @topics = @topics.where(category: @category)
@@ -43,6 +48,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find params[:id]
+    $redis.incr("topics:#{@topic.id}:views")
 
     if params[:comment_id] and comment = @topic.comments.find_by(id: params.delete(:comment_id))
       params[:page] = comment.page
