@@ -48,7 +48,13 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find params[:id]
+
+    # topic 访问 + 1
     $redis.incr("topics:#{@topic.id}:views")
+
+    # topic 访问量
+    topic_views = $redis.get("topics:#{@topic.id}:views")
+    @topic_views = topic_views ? topic_views : 0
 
     if params[:comment_id] and comment = @topic.comments.find_by(id: params.delete(:comment_id))
       params[:page] = comment.page

@@ -20,6 +20,8 @@
                       = ' · '
                       a href=topic_path(@topic)
                         = time_ago_tag @topic.created_at
+                      = ' · '
+                      span.view_count= "0 访问"
                       - if @topic.category
                         = ' · '
                         a href=categoried_topics_path(category_id: @topic.category.slug)
@@ -105,6 +107,10 @@
                 - else
                   .list-group-item.text-center.text-muted
                     = t '.no_more_topics'
+javascript:
+  $(document).ready(function(){
+    $("span.view_count").text(#{ @topic_views }+ " 访问");
+  });
 
 - if login?
   - if @topic.liked_by?(current_user)
