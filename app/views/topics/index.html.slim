@@ -48,8 +48,14 @@
       .col-md-3
         .panel
           .panel-body
-            a.btn.btn-success.btn-block href=new_topic_path(category_id: @category.try(:slug))
-              = t '.create_topic'
+            p style="text-align:center;margin-bottom:0;"
+              | C2qu = C too qu <br />
+              | 大学生的创意社区
+        - if @category
+          .panel
+            .panel-body
+              a.btn.btn-success.btn-block href=new_topic_path(category_id: @category.try(:slug))
+                = t '.create_topic'
         .panel
           .panel-body
             ul.nav.nav-pills.nav-stacked.text-center
