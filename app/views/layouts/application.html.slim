@@ -20,7 +20,7 @@ html
       .container
         .navbar-header
           a.navbar-brand href=root_path
-            = CONFIG['title']
+            = image_tag("logo.png", style: "width: 100px;margin-top: -4px;")
         ul.nav.navbar-nav.navbar-right
           - if login?
             li class=('active' if request.original_fullpath =~ /^\/notifications/)
