@@ -11,6 +11,15 @@ class ApplicationController < ActionController::Base
 
   class AccessDenied < Exception; end
 
+  def detect_device_variant
+    case request.user_agent
+    when /iPad/i
+      request.variant = :tablet
+    when /iPhone|Android/i
+      request.variant = :phone
+    end
+  end
+
   def login_required
     unless login?
       redirect_to login_path(return_to: (request.fullpath if request.get?))

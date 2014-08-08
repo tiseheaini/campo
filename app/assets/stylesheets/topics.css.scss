@@ -20,6 +20,16 @@
   }
 }
 
+// topics phone-text-area style on phone
+textarea.phone-text-area {
+  height: 100px;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  margin: 0px;
+  width: 100%;
+  padding: 8px 10px;
+}
+
 .text-center {
   text-align: center;
 }

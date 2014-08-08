@@ -1,0 +1,18 @@
+= javascript_include_tag "simditor-all.min"
+= stylesheet_link_tag    "simditor"
+
+= content_tag :textarea, nil, tabIndex: 3, class: "form-control", id: "topic_body", name: "topic[body]"
+
+javascript:
+  // Simditor
+  $(document).ready(function(){
+    var editor = new Simditor({
+      textarea: $('#topic_body'),
+      upload: {
+        url: '/upload',
+        params: null,
+        connectionCount: 3,
+        leaveConfirm: '正在上传文件，如果离开上传会自动取消'
+      }
+    });
+  });
