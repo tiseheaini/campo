@@ -8,8 +8,9 @@ javascript:
   $(document).ready(function(){
     var editor = new Simditor({
       textarea: $('#topic_body'),
+      toolbar: ['bold', 'italic', 'underline', 'strikethrough', '|', 'ol', 'ul', 'blockquote', 'code', '|', 'link', 'image'],
       upload: {
-        url: '/upload',
+        url: '/attachments',
         params: null,
         connectionCount: 3,
         leaveConfirm: '正在上传文件，如果离开上传会自动取消'

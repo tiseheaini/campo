@@ -2,8 +2,9 @@ class AttachmentsController < ApplicationController
   before_action :login_required
 
   def create
-    @attachment = current_user.attachments.create params.require(:attachment).permit(:file)
+    params[:file] = params.delete :upload_file
+    @attachment = current_user.attachments.create params.permit(:file)
 
-    render json: { url: @attachment.file.url }
+    render json: { success: true, msg: '上传成功', file_path: @attachment.file.url }
   end
 end
