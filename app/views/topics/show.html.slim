@@ -69,10 +69,7 @@
                       .list-group-item-heading
                         a.comment-user href=user_link(current_user)
                           = current_user.username
-                      = form_for @topic.comments.new, url: topic_comments_path(@topic), remote: true do |f|
-                        .form-group
-                          = markdown_area f, :body
-                        = f.submit t('.add_this_comment'), class: 'btn btn-success', 'data-disable-with' => t('.add_this_comment')
+                      = render 'topics/comment/form'
               - else
                 = t '.your_account_had_been_locked'
             - else

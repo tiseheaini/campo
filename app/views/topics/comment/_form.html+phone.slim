@@ -1,0 +1,4 @@
+= form_for @topic.comments.new, url: topic_comments_path(@topic), remote: true do |f|
+  .form-group
+    = f.text_area :body, class: "small-textarea", tabIndex: 3
+  = f.submit t('.add_this_comment'), class: 'btn btn-success', 'data-disable-with' => t('.add_this_comment')

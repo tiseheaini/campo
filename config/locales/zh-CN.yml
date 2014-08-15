@@ -264,7 +264,6 @@ zh-CN:
       no_matching_results: "没有匹配结果"
       search: "搜索"
     show:
-      add_this_comment: "添加评论"
       comments: "评论"
       delete_confirm: "你确定要删除此话题吗？"
       login: "登录"
@@ -275,6 +274,9 @@ zh-CN:
       sign_up: "注册"
       to_comment: "后发表评论"
       your_account_had_been_locked: "你的帐号已被锁定"
+    comment:
+      form:
+        add_this_comment: "添加评论"
     topic:
       comments_count: "%{count} 条评论"
   user_mailer:

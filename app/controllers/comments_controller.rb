@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :login_required, :no_locked_required
   before_action :find_comment, only: [:edit, :cancel, :update, :trash]
+  before_action :detect_device_variant, only: :edit
 
   def create
     resource, id = request.path.split('/')[1, 2]

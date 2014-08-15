@@ -20,14 +20,22 @@
   }
 }
 
-// topics phone-text-area style on phone
-textarea.phone-text-area {
+// topics small-textarea style on textarea
+textarea.small-textarea {
   height: 100px;
   border: 1px solid #ccc;
   box-shadow: none;
   margin: 0px;
   width: 100%;
   padding: 8px 10px;
+}
+
+// topics simditor small style
+form.small-textarea {
+  .simditor-body {
+    min-height: 120px;
+    padding-bottom: 22px;
+  }
 }
 
 .text-center {

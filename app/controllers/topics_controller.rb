@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :login_required, :no_locked_required, except: [:index, :show, :search]
   before_action :find_topic, only: [:edit, :update, :trash]
-  before_action :detect_device_variant, only: [:new]
+  before_action :detect_device_variant, only: [:new, :show]
 
   def index
     @topics = Topic.includes(:user, :category).page(params[:page])

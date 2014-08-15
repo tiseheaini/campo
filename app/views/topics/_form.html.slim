@@ -7,7 +7,7 @@
       .form-group
         = f.collection_select :category_id, Category.order(topics_count: :desc), :id, :name, { include_blank: t('.no_category')}, class: 'form-control', tabIndex: 2
   .form-group
-    = render('topic_textarea')
+    = render 'topics/topic/textarea'
   - if topic.new_record?
     = f.submit t('.create_topic'), class: 'btn btn-success', tabIndex: 4, 'data-disable-with' => t('.create_topic')
   - else
