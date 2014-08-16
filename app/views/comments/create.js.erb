@@ -1,5 +1,8 @@
 <% if @comment.errors.empty? %>
   $('#comments-for-<%= @comment.commentable_type.downcase %>-<%= @comment.commentable_id %>').append('<%= j render @comment %>').find('.empty-message').remove();
+  // pc 端清空输入框内容
   $('#new_comment .simditor-body').html('');
+  // phone 端清空输入框内容
+  $('.new_comment textarea').val('');
   history.replaceState(history.state, '', '<%= comment_replace_path(@comment) %>');
 <% end %>
