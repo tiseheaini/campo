@@ -1,24 +1,19 @@
-= javascript_include_tag "simditor-all.min"
-= stylesheet_link_tag    "simditor"
-
 = form_for @topic.comments.new, url: topic_comments_path(@topic), html: { class: "new_comment small-textarea" }, remote: true do |f|
   .form-group
     = f.text_area :body, tabIndex: 3
   = f.submit t('.add_this_comment'), class: 'btn btn-success', 'data-disable-with' => t('.add_this_comment')
 
 javascript:
-  $(document).ready(function(){
+  $(document).on('ready page:load', function(){
     // Simditor
-    $(document).ready(function(){
-      window.editor = new Simditor({
-        textarea: $('#comment_body'),
-        toolbar: ['bold', 'italic', 'underline', 'strikethrough', '|', 'ol', 'ul', 'blockquote', 'code', '|', 'link', 'image'],
-        upload: {
-          url: '/attachments',
-          params: null,
-          connectionCount: 3,
-          leaveConfirm: '正在上传文件，如果离开上传会自动取消'
-        }
-      });
+    window.editor = new Simditor({
+      textarea: $('#comment_body'),
+      toolbar: ['bold', 'italic', 'underline', 'strikethrough', '|', 'ol', 'ul', 'blockquote', 'code', '|', 'link', 'image'],
+      upload: {
+        url: '/attachments',
+        params: null,
+        connectionCount: 3,
+        leaveConfirm: '正在上传文件，如果离开上传会自动取消'
+      }
     });
   });

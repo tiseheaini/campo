@@ -1,11 +1,8 @@
-= javascript_include_tag "simditor-all.min"
-= stylesheet_link_tag    "simditor"
-
 = content_tag :textarea, text_body, tabIndex: 3, class: "form-control small-textarea", id: "comment_body", name: "comment[body]"
 
 javascript:
   // Simditor
-  $(document).ready(function(){
+  $(document).on('ready page:load', function(){
     var editor = new Simditor({
       textarea: $('#comment_body'),
       toolbar: ['bold', 'italic', 'underline', 'strikethrough', '|', 'ol', 'ul', 'blockquote', 'code', '|', 'link', 'image'],

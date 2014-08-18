@@ -13,7 +13,7 @@
         = raw comment.body
       .list-group-item-actions.clearfix
         .pull-right
-          a.btn data-reply-to="@#{comment.user.username} ##{comment.id} "
+          a.btn data-reply-to="@#{comment.user.username} ##{comment.id}&nbsp;"
             i.fa.fa-reply
           a.btn id="like-for-comment-#{comment.id}" href=comment_like_path(comment) data-remote="true" data-method="post"
             i.fa.fa-heart

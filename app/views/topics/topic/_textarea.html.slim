@@ -1,11 +1,9 @@
-= javascript_include_tag "simditor-all.min"
-= stylesheet_link_tag    "simditor"
-
 = content_tag :textarea, nil, tabIndex: 3, class: "form-control", id: "topic_body", name: "topic[body]"
 
 javascript:
   // Simditor
-  $(document).ready(function(){
+  $(document).on('ready page:load', function(){
+    // Simditor
     var editor = new Simditor({
       textarea: $('#topic_body'),
       toolbar: ['bold', 'italic', 'underline', 'strikethrough', '|', 'ol', 'ul', 'blockquote', 'code', '|', 'link', 'image'],
