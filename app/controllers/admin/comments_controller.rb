@@ -1,5 +1,6 @@
 class Admin::CommentsController < Admin::ApplicationController
   before_action :find_comment, except: [:index, :trashed]
+  before_action :detect_device_variant, only: :show
 
   def index
     @comments = Comment.includes(:user, :commentable).order(id: :desc).page(params[:page])
