@@ -1,5 +1,6 @@
 class Admin::CategoriesController < Admin::ApplicationController
   before_action :find_category, only: [:show, :edit, :update, :destroy]
+  before_action :detect_device_variant, only: :show
 
   def index
     @categories = Category.order(topics_count: :desc)
