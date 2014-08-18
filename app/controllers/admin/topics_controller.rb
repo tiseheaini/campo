@@ -1,5 +1,6 @@
 class Admin::TopicsController < Admin::ApplicationController
   before_action :find_topic, only: [:show, :update, :trash, :restore]
+  before_action :detect_device_variant, only: :show
 
   def index
     @topics = Topic.includes(:user).order(id: :desc).page(params[:page])
