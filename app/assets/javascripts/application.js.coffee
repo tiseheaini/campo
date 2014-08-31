@@ -4,6 +4,7 @@
 #= require bootstrap
 #= require jquery.autosize
 #= require jquery.validate
+#= require template
 #= require jquery.timeago
 #= require nprogress
 #= require campo

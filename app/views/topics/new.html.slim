@@ -4,9 +4,48 @@
   .container
     .row
       .col-md-9
+        div.flash-danger
+      .col-md-9
         .panel
           .panel-heading
             h3.panel-title = t '.new_topic'
 
-          .panel-body
+          .panel-body.form-parent
             = render 'form', topic: @topic
+
+textarea id="mess-danger-template" style="display: none;"
+  div.alert.alert-danger.alert-dismissible.mess-danger role="alert"
+    button.close type="button" data-dismiss="alert"
+      span aria-hidden="true" &times;
+      span.sr-only
+    | {{ mess }}
+
+javascript:
+  $(".form-parent").on("submit", function(event){
+    var errArr = [];
+    if ( $("#topic_title").val() == "" ){
+      var mess = "标题不能为空";
+      var messDangerTemplate = template("mess-danger-template", {mess: mess});
+      errArr.push(messDangerTemplate);
+    }
+
+    if ( $("#topic_category_id").val() == "" ){
+      var mess = "分类不能为空";
+      var messDangerTemplate = template("mess-danger-template", {mess: mess});
+      $(".col-md-9 .flash-danger").append( messDangerTemplate );
+      errArr.push(messDangerTemplate);
+    }
+
+    if ( $("#topic_body").val() == "" ){
+      var mess = "话题不能为空";
+      var messDangerTemplate = template("mess-danger-template", {mess: mess});
+      $(".col-md-9 .flash-danger").append( messDangerTemplate );
+      errArr.push(messDangerTemplate);
+    }
+
+    if (errArr.length != 0){
+      $(".col-md-9 .flash-danger").empty().append( errArr.join('') );
+      $("body").animate({ scrollTop: 0 }, 1000 );
+      return false;
+    }
+  });
