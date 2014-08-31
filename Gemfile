@@ -87,6 +87,8 @@ gem 'puma'
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
   gem 'spring'
+  gem 'pry-rails'
+  gem 'pry-debugger'
 
   # Livereload
   gem 'guard-livereload', require: false
@@ -98,6 +100,9 @@ group :development do
   # Deploy tool
   gem 'capistrano', '2.15.4'
   gem "capistrano-rbenv", "1.0.5"
+
+  # Clear assets log
+  gem 'quiet_assets', :git => 'git://github.com/AgilionApps/quiet_assets.git'
 end
 
 group :development, :test do

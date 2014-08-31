@@ -36,8 +36,11 @@
                           span.count
                             - if @topic.likes_count > 0
                               = @topic.likes_count
-                        a.btn data-visible-to="creator" href=edit_topic_path(@topic)
-                          i.fa.fa-pencil
+                        - if request.variant
+                          nil
+                        - else
+                          a.btn data-visible-to="creator" href=edit_topic_path(@topic)
+                            i.fa.fa-pencil
                         a.btn data-visible-to="creator" href=trash_topic_path(@topic) data-remote="true" data-method="delete" data-confirm=t('.delete_confirm')
                           i.fa.fa-trash-o
 
@@ -104,6 +107,14 @@
                 - else
                   .list-group-item.text-center.text-muted
                     = t '.no_more_topics'
+
+textarea id="mess-danger-template" style="display: none;"
+  div.alert.alert-danger.alert-dismissible.mess-danger role="alert"
+    button.close type="button" data-dismiss="alert"
+      span aria-hidden="true" &times;
+      span.sr-only
+    | {{ mess }}
+
 javascript:
   $(document).ready(function(){
     $("span.view_count").text(#{ @topic_views }+ " 访问");
@@ -117,15 +128,11 @@ javascript:
   javascript:
     campo.Likes.updateLikes('comment', #{current_user.likes.where(likeable_type: 'Comment', likeable_id: @comments.pluck(:id)).pluck(:likeable_id)});
 
-    $('#new_comment').validate({
-      rules: {
-        'comment[body]': {
-          required: true
-        }
-      },
-      messages: {
-        'comment[body]': {
-          required: '#{Comment.new.errors.generate_message :body, :blank}'
-        }
+    $(".list-group-campo").delegate(".comment", "submit", function(){
+      if ( $(this).find("form #comment_body").val() == "" ){
+        var mess = "内容不能为空";
+        var messDangerTemplate = template("mess-danger-template", {mess: mess});
+        $(this).find(".flash-danger").empty().append( messDangerTemplate );
+        return false;
       }
     });
