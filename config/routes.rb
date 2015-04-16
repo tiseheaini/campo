@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     collection do
       get :check_email
       get :check_username
+      get "weibo/callback", to: "users#callback"
     end
   end
 

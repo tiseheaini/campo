@@ -6,6 +6,9 @@ gem 'rails', '4.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+#ruby pinyin
+gem 'ruby-pinyin'
+
 # net-ssh
 gem 'net-ssh', '~> 2.7.0'
 

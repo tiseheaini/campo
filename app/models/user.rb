@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
 
   has_many :attachments, dependent: :delete_all
 
-  validates :username, uniqueness: { case_sensitive: false }, presence: true, format: { with: /\A[a-z0-9][a-z0-9-]*\z/i }
-  validates :email, uniqueness: { case_sensitive: false }, presence: true, format: { with: /\A([^@\s]+)@((?:[a-z0-9-]+\.)+[a-z]{2,})\z/i }
+  has_many :authorizations
+
+  #validates :username, uniqueness: { case_sensitive: false }, presence: true, format: { with: /\A[a-z0-9][a-z0-9-]*\z/i }
+  #validates :email, uniqueness: { case_sensitive: false }, presence: true, format: { with: /\A([^@\s]+)@((?:[a-z0-9-]+\.)+[a-z]{2,})\z/i }
 
   scope :unlocked, -> { where(locked_at: nil) }
   scope :locked, -> { where.not(locked_at: nil) }
