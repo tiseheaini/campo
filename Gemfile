@@ -92,8 +92,8 @@ group :development do
   gem 'spring'
 
   # Livereload
-  gem 'guard-livereload', require: false
-  gem 'rack-livereload'
+  #gem 'guard-livereload', require: false
+  #gem 'rack-livereload'
 
   # i18n extractor
   gem 'i18n-tasks', '~> 0.3.2'
