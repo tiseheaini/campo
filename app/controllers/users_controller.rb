@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def callback
     uri = URI('https://api.weibo.com/oauth2/access_token')
-    res = Net::HTTP.post_form(uri, 'client_id' => '2380174108', 'client_secret' => 'b5215f1adec402e3548ae55f9a6f2376', 'grant_type' => 'authorization_code', 'code' => params['code'], 'redirect_uri' => "http://www.shiyueqingxin.com/users/weibo/callback")
+    res = Net::HTTP.post_form(uri, 'client_id' => WEIBO['app_key'], 'client_secret' => WEIBO['client_secret'], 'grant_type' => 'authorization_code', 'code' => params['code'], 'redirect_uri' => WEIBO['redirect_uri'])
     u_json = JSON.parse res.body
     uri = URI('https://api.weibo.com/2/users/show.json')
     params = { :access_token => u_json['access_token'], uid: u_json['uid'] }

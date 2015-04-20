@@ -1,0 +1,13 @@
+default: &default
+  app_key: "2380174108"
+  client_secret: "b5215f1adec402e3548ae55f9a6f2376"
+  redirect_uri: "http://www.shiyueqingxin.com/users/weibo/callback"
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+
+test:
+  <<: *default
