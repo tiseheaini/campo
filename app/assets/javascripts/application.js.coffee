@@ -6,6 +6,10 @@
 #= require jquery.validate
 #= require jquery.timeago
 #= require nprogress
+#= require module.min
+#= require hotkeys.min
+#= require uploader.min
+#= require simditor.min
 #= require campo
 #= require_tree ./plugins
 
