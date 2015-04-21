@@ -11,22 +11,41 @@
         = time_ago_tag comment.created_at
   = form_for comment, remote: true do |f|
     .form-group
-      = markdown_area f, :body
+      = f.text_area :body, id: "edit_comment_body"
     = f.submit t('.save_changes'), class: 'btn btn-success', 'data-disable-with' => t('.save_changes')
     '
     a.btn.btn-default href=cancel_comment_path(comment) data-remote="true"
       = t '.cancel'
 
 javascript:
-  $('#edit_comment_#{comment.id}').validate({
-    rules: {
-      'comment[body]': {
-        required: true
-      }
-    },
-    messages: {
-      'comment[body]': {
-        required: '#{@comment.errors.generate_message :body, :blank}'
-      }
+  var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', '|', 'source'];
+  var editor = new Simditor({
+    textarea: $('#edit_comment_body'),
+    toolbar: toolbar,
+    upload: {
+      'url': '/attachments',
+      'params': null,
+      'fileKey': 'upload_file',
+      'connectionCount': 3,
+      'leaveConfirm': '正在上传文件，如果离开上传会自动取消'
+    }
+  });
+
+  $("body").delegate("#comment-#{params[:id]}", "submit", function(){
+    var comment_body  = $.trim( $("#comment-#{params[:id]} #edit_comment_body").val() )  == "";
+
+    if(comment_body){
+      var _comment = $("#comment-#{params[:id]}");
+      var _body = _comment.find(".simditor");
+      var _parent = _body.parent(".form-group");
+      _body.after("<span class=\"help-block\">不能为空字符</span>");
+      _parent.addClass("has-error");
+
+      setTimeout(function(){
+        _parent.removeClass("has-error");
+        _parent.find(".help-block").remove();
+      }, 1300);
+
+      return false;
     }
   });

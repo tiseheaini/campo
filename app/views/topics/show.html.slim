@@ -58,7 +58,7 @@
                 = paginate @comments, theme: 'campo', params: { anchor: 'comments' }
 
         .panel
-          .panel-body
+          .panel-body#comment-editor
             - if login?
               - unless current_user.locked?
                 .list-group.list-group-campo
@@ -121,8 +121,8 @@ javascript:
     campo.Likes.updateLikes('comment', #{current_user.likes.where(likeable_type: 'Comment', likeable_id: @comments.pluck(:id)).pluck(:likeable_id)});
 
     var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', '|', 'source'];
-    var editor = new Simditor({
-      textarea: $('#comment_body'),
+    var new_editor = new Simditor({
+      textarea: $('#comment-editor #comment_body'),
       toolbar: toolbar,
       upload: {
         'url': '/attachments',
@@ -133,17 +133,17 @@ javascript:
       }
     });
 
-    $("body").delegate(".panel-body", "submit", function(){
-      var comment_body = $.trim( $("#comment_body").val() ) == "";
+    $("body").delegate("#comment-editor", "submit", function(){
+      var _this = $(this);
+      var comment_body = $.trim( _this.find("#comment_body").val() ) == "";
 
       if(comment_body){
-        var _body = $(".simditor");
+        var _body = _this.find(".simditor");
         var _parent = _body.parent(".form-group");
         _body.after("<span class=\"help-block\">不能为空字符</span>");
         _parent.addClass("has-error");
 
         setTimeout(function(){
-          console.log(_parent);
           _parent.removeClass("has-error");
           _parent.find(".help-block").remove();
         }, 1300);
