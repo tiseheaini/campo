@@ -69,7 +69,7 @@
                       .list-group-item-heading
                         a.comment-user href=user_link(current_user)
                           = current_user.username
-                      = form_for @topic.comments.new, url: topic_comments_path(@topic), remote: true do |f|
+                      = form_for @topic.comments.new, url: topic_comments_path(@topic), html: { class: "new_comment small-textarea" }, remote: true do |f|
                         .form-group
                           = f.text_area :body
                         = f.submit t('.add_this_comment'), class: 'btn btn-success', 'data-disable-with' => t('.add_this_comment')
