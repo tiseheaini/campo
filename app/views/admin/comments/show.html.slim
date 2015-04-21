@@ -7,7 +7,7 @@
         .panel
           .panel-heading
             h3.panel-title = t '.comments'
-          .panel-body
+          .panel-body#comment-editor
             = form_for [:admin, @comment], html: { class: 'comment-form' } do |f|
               = render 'share/flash_messages'
               = render 'share/form_error_messages', form: f
@@ -21,7 +21,7 @@
                   a href=admin_user_path(@comment.user)
                     = @comment.user.name
               .form-group
-                = markdown_area f, :body, tabIndex: 1
+                = f.text_area :body, tabIndex: 1
               .form-group
                 = f.label :created_at
                 = f.text_field :created_at, class: 'form-control', disabled: true
@@ -36,15 +36,34 @@
                       = t '.delete'
 
 javascript:
-  $('form.comment-form').validate({
-    rules: {
-      'comment[body]': {
-        required: true
-      }
-    },
-    messages: {
-      'comment[body]': {
-        required: '#{@comment.errors.generate_message :body, :blank}'
-      }
+  var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', '|', 'source'];
+  var editor = new Simditor({
+    textarea: $('#comment_body'),
+    toolbar: toolbar,
+    upload: {
+      'url': '/attachments',
+      'params': null,
+      'fileKey': 'upload_file',
+      'connectionCount': 3,
+      'leaveConfirm': '正在上传文件，如果离开上传会自动取消'
+    }
+  });
+
+  $("body").delegate("#comment-editor", "submit", function(){
+    var _this = $(this);
+    var comment_body = $.trim( _this.find("#comment_body").val() ) == "";
+
+    if(comment_body){
+      var _body = _this.find("#comment_body");
+      var _parent = _body.parents(".form-group");
+      _body.after("<span class=\"help-block\">不能为空字符</span>");
+      _parent.addClass("has-error");
+
+      setTimeout(function(){
+        _parent.removeClass("has-error");
+        _parent.find(".help-block").remove();
+      }, 1300);
+
+      return false;
     }
   });
