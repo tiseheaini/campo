@@ -9,7 +9,7 @@
     = f.text_field :slug, class: 'form-control', tabIndex: 2
   .form-group
     = f.label :description
-    = markdown_area f, :description, tabIndex: 3
+    = f.text_area :description, tabIndex: 3
   - unless @category.new_record?
     .form-group
       = f.label :topics_count
@@ -24,21 +24,50 @@
           = t '.permanently_delete'
 
 javascript:
-  $('form.category-form').validate({
-    rules: {
-      'category[name]': {
-        required: true
-      },
-      'category[slug]': {
-        required: true
-      }
-    },
-    messages: {
-      'category[name]': {
-        required: '#{@category.errors.generate_message :name, :blank}'
-      },
-      'category[slug]': {
-        required: '#{@category.errors.generate_message :slug, :blank}'
-      }
+  var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', '|', 'source'];
+  var editor = new Simditor({
+    textarea: $('#category_description'),
+    toolbar: toolbar,
+    upload: {
+      'url': '/attachments',
+      'params': null,
+      'fileKey': 'upload_file',
+      'connectionCount': 3,
+      'leaveConfirm': '正在上传文件，如果离开上传会自动取消'
+    }
+  });
+
+  $("body").delegate("#category-form", "submit", function(){
+    var _this = $(this);
+    var category_name = $.trim( _this.find("#category_name").val() ) == "";
+
+    if(category_name){
+      var _name = _this.find("#category_name");
+      var _parent = _name.parent(".form-group");
+      _name.after("<span class=\"help-block\">不能为空字符</span>");
+      _parent.addClass("has-error");
+
+      setTimeout(function(){
+        _parent.removeClass("has-error");
+        _parent.find(".help-block").remove();
+      }, 1300);
+
+      return false;
+    }
+
+    var category_slug = $.trim( _this.find("#category_slug").val() ) == "";
+
+    if(category_slug){
+      var _slug = $("#category_slug");
+      var _parent = _slug.parent(".form-group");
+      _slug.after("<span class=\"help-block\">不能为空字符</span>");
+      _parent.addClass("has-error");
+
+      setTimeout(function(){
+        _parent.removeClass("has-error");
+        _parent.find(".help-block").remove();
+      }, 1300);
+
+      return false;
     }
   });
