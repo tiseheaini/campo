@@ -24,10 +24,9 @@
           = t '.permanently_delete'
 
 javascript:
-  var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', '|', 'source'];
   var editor = new Simditor({
     textarea: $('#category_description'),
-    toolbar: toolbar,
+    toolbar: window.campo.toolbar,
     upload: {
       'url': '/attachments',
       'params': null,

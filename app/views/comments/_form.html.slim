@@ -18,10 +18,9 @@
       = t '.cancel'
 
 javascript:
-  var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', '|', 'source'];
   var editor = new Simditor({
     textarea: $('#edit_comment_body'),
-    toolbar: toolbar,
+    toolbar: window.campo.toolbar,
     upload: {
       'url': '/attachments',
       'params': null,
