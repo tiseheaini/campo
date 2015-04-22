@@ -18,8 +18,9 @@
       = t '.cancel'
 
 javascript:
+  var textarea = $("#comment-#{params[:id]} #edit_comment_body");
   var editor = new Simditor({
-    textarea: $('#edit_comment_body'),
+    textarea: textarea,
     toolbar: window.campo.toolbar,
     upload: {
       'url': '/attachments',
