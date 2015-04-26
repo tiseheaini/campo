@@ -6,7 +6,13 @@
       .col-md-8.col-md-push-2
         .panel
           .panel-heading
-            h3.panel-title = @topic.title
+            .row
+              .col-md-10
+                h3.panel-title = @topic.title
+              .col-md-2.text-center style="height: 35px;"
+                - label = @topic.suggest ? "label-success" : "label-default"
+                span class="label #{label} suggest" style="line-height: 35px;"
+                  = link_to "置顶", suggest_admin_topic_path, method: :patch, remote: true, :style => "color: white;text-decoration: none;"
           .panel-body#topic-editor
             = form_for [:admin, @topic], html: { class: 'topic-form' } do |f|
               = render 'share/flash_messages'

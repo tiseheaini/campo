@@ -1,5 +1,5 @@
 class Admin::TopicsController < Admin::ApplicationController
-  before_action :find_topic, only: [:show, :update, :trash, :restore]
+  before_action :find_topic, only: [:show, :update, :trash, :restore, :suggest]
 
   def index
     @topics = Topic.includes(:user).order(id: :desc).page(params[:page])
@@ -32,6 +32,11 @@ class Admin::TopicsController < Admin::ApplicationController
     @topic.restore
     flash[:success] = I18n.t('admin.topics.flashes.successfully_restored')
     redirect_to admin_topic_path(@topic)
+  end
+
+  def suggest
+    negation = !@topic.suggest
+    @topic.update( suggest: negation )
   end
 
   private

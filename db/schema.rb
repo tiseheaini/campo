@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415082422) do
+ActiveRecord::Schema.define(version: 20150423074501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150415082422) do
     t.string   "title"
     t.text     "body"
     t.float    "hot",                 default: 0.0
+    t.boolean  "suggest",             default: false
     t.integer  "comments_count",      default: 0
     t.integer  "likes_count",         default: 0
     t.integer  "subscriptions_count", default: 0

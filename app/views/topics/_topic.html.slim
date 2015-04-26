@@ -1,5 +1,8 @@
 - cache [topic, locale] do
   a.list-group-item.topic href=topic_last_path(topic) data-topic-id=topic.id
+    - if topic.suggest
+      .btn-clipboard
+        = "置顶"
     .list-group-item-avatar
       img.img-rounded alt="avatar" src=topic.user.avatar.normal.url
     .list-group-item-content

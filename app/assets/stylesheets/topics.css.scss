@@ -35,3 +35,19 @@ form.small-textarea {
 .col-md-padding, .container-padding {
   padding: 0px 5px;
 }
+
+.btn-clipboard {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  display: block;
+  padding: 5px 8px;
+  font-size: 12px;
+  color: #767676;
+  cursor: pointer;
+  background-color: #fff;
+  border-left: 1px solid #e1e1e8;
+  border-bottom: 1px solid #e1e1e8;
+  border-radius: 0 4px 0 4px;
+}

@@ -36,6 +36,8 @@
           .panel-body
             .list-group.list-group-campo.recordable
               - if @topics.any?
+                - if @topics.first_page?
+                  = render partial: "topic", collection: @suggest_topics, as: :topic
                 = render @topics
               - else
                 .list-group-item.text-center.text-muted.empty-message

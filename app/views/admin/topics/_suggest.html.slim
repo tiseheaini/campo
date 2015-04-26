@@ -1,0 +1,3 @@
+- label = @topic.suggest ? "label-success" : "label-default"
+span class="label #{ label } suggest" style="line-height: 35px;"
+  = link_to "置顶", suggest_admin_topic_path, method: :patch, remote: true, :style => "color: white;text-decoration: none;"

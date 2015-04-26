@@ -115,6 +115,7 @@ Rails.application.routes.draw do
       member do
         delete :trash
         patch :restore
+        patch :suggest
       end
     end
 
