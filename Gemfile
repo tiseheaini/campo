@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 #source 'https://ruby.taobao.org/'
 
 gem 'rails', '4.1.5'
@@ -10,7 +10,8 @@ gem 'pg'
 gem 'ruby-pinyin'
 
 # net-ssh
-gem 'net-ssh', '~> 2.7.0'
+#gem 'net-ssh', '~> 2.7.0'
+#gem 'net-ssh'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
