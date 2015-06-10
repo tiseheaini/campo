@@ -1,4 +1,4 @@
-root = "/home/tiny/campo-h5/current/"
+root = "/home/deployer/campo-h5/current"
 environment 'production'
 #directory '/home/tiny/campo-h5'
 
