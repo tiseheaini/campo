@@ -1,7 +1,7 @@
 default: &default
-  app_key: "2380174108"
-  client_secret: "b5215f1adec402e3548ae55f9a6f2376"
-  redirect_uri: "http://www.shiyueqingxin.com/users/weibo/callback"
+  app_key: "3280876495"
+  client_secret: "b1c4c542339b3957f63c89c210c9c206"
+  redirect_uri: "http://hi.iqunix.com/users/weibo/callback"
 
 development:
   <<: *default
