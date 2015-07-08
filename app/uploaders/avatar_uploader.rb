@@ -13,9 +13,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
   }
 
   def default_url
-    if model.respond_to? :gravatar_url
-      model.gravatar_url(size: VERSION_SIZES[version_name])
-    end
+    #if model.respond_to? :gravatar_url
+      #model.gravatar_url(size: VERSION_SIZES[version_name])
+    #end
+    $redis.get("weibo:#{model.id}:avatar")
   end
 
   VERSION_SIZES.each do |version_name, size|

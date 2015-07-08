@@ -47,8 +47,10 @@ class UsersController < ApplicationController
     if auth_user
       login_as auth_user
     else
-      login_as create_user_with_weibo(resp, u_json['access_token'])
+      auth_user = create_user_with_weibo(resp, u_json['access_token'])
+      login_as auth_user
     end
+    $redis.set("weibo:#{auth_user.id}:avatar", resp['avatar_large'])
 
     redirect_to root_path
   end
@@ -66,13 +68,7 @@ class UsersController < ApplicationController
   end
 
   def create_user_with_weibo(resp, a_token)
-    username = PinYin.of_string(resp['screen_name']).join
-
-    if User.find_by(username: username).present?
-      username << '_' << [*('A'..'Z')].sample(4).join
-    end
-
-    user = User.create(name: resp['screen_name'], username: username, password: [*('A'..'Z')].sample(8).join)
+    user = User.create(name: resp['screen_name'], username: resp['screen_name'], password: [*('A'..'Z')].sample(8).join)
     user.update(confirmed: true, send_comment_email: false, send_mention_email: false)
     Authorization.create(user_id: user.id ,uid: resp['id'], access_token: a_token, provider: 'weibo')
     user
