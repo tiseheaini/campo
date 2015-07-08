@@ -18,7 +18,7 @@
                 = f.label :avatar, class: 'control-label col-sm-3'
                 .col-sm-6.user-image-uploader
                   .image
-                    img.img-rounded alt="avatar" src=current_user.avatar.bigger.url
+                    img.img-rounded style="width:100%;" alt="avatar" src=current_user.avatar.bigger.url
                   .uploader
                     = f.file_field :avatar, tabIndex: 1
                     .checkbox
@@ -29,7 +29,7 @@
               .form-group
                 = f.label :name, class: 'control-label col-sm-3'
                 .col-sm-6
-                  = f.text_field :name, class: 'form-control', tabIndex: 3
+                  = f.text_field :name, class: 'form-control', tabIndex: 3, readonly: "true"
               .form-group
                 = f.label :bio, class: 'control-label col-sm-3'
                 .col-sm-6
