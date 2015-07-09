@@ -299,7 +299,10 @@ body {
   }
 
   .list-group-item-avatar {
+    width: 48px;
     float: left;
+
+    .img-rounded { width: 100%; }
   }
 
   .list-group-item-avatar + .list-group-item-content {

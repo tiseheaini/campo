@@ -3,18 +3,11 @@
     .user-profile-avatar
       img.img-rounded alt="avatar" src=user.avatar.bigger.url
     .user-profile-name
-      span.text-muted = user.username
-      - if user.name
-        '
-        b = user.name
-      - else
-        '
-        b = "木有名字"
+      b = user.username
     .user-profile-bio
       = simple_format user.bio
 
   - if login? and user == current_user
     .panel-footer.clearfix
-      .pull-right
-        a.btn.btn-default href=settings_profile_path
-          = t '.edit_profile'
+      a.btn.btn-default href=settings_profile_path
+        = t '.edit_profile'
