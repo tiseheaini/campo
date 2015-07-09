@@ -17,7 +17,7 @@
               .form-group
                 = f.label :username, class: 'control-label col-sm-3'
                 .col-sm-6
-                  = f.text_field :username, class: 'form-control', tabIndex: 1
+                  = f.text_field :username, class: 'form-control', tabIndex: 1, readonly: "true"
               .form-group
                 = f.label :email, class: 'control-label col-sm-3'
                 .col-sm-6
@@ -26,13 +26,13 @@
                 = f.label :locale, class: 'control-label col-sm-3'
                 .col-sm-6
                   = f.select :locale, I18n.available_locales.map { |locale| [t("locales.#{locale}"), locale] }, { }, class: 'form-control', tabIndex: 3
-              .form-group
+              //.form-group
                 = label_tag :current_password, t('.current_password'), class: 'control-label col-sm-3'
                 .col-sm-6
                   = password_field_tag :current_password, nil, class: 'form-control', autocomplete: 'off', tabIndex: 4
               .form-group
                 .col-sm-6.col-sm-push-3
-                  = f.submit t('.save_changes'), class: 'btn btn-primary', tabIndex: 5
+                  = f.submit t('.save_changes'), class: 'btn btn-primary', tabIndex: 4
 
 javascript:
   $('form.user-form').validate({
@@ -41,27 +41,13 @@ javascript:
         required: true,
         format: /^([^@\s]+)@((?:[a-z0-9-]+\.)+[a-z]{2,})$/i,
         remote: '/users/check_email?id=#{current_user.id}'
-      },
-      'user[username]': {
-        required: true,
-        remote: '/users/check_username?id=#{current_user.id}',
-        format: /^[a-z0-9-]+$/i
-      },
-      'current_password': 'required'
+      }
     },
     messages: {
-      'user[username]': {
-        required: '#{@user.errors.generate_message :username, :blank}',
-        remote: '#{@user.errors.generate_message :username, :taken}',
-        format: '#{@user.errors.generate_message :username, :format}'
-      },
       'user[email]': {
         required: '#{@user.errors.generate_message :email, :blank}',
         remote: '#{@user.errors.generate_message :email, :taken}',
         format: '#{@user.errors.generate_message :email, :format}'
-      },
-      'current_password': {
-        required: '#{@user.errors.generate_message :password, :blank}'
       }
     }
   });
