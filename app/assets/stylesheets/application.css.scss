@@ -21,6 +21,7 @@ $container-large-desktop:   ((940px + $grid-gutter-width)) !default;
 @import "markdown";
 
 body {
+  font-family: "Microsoft YaHei",微软雅黑;
   background: #eee;
   background-image: url(image_path('bg.gif'));
 }
