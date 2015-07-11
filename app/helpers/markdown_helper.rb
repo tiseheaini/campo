@@ -55,7 +55,7 @@ module MarkdownHelper
   end
 
   def markdown_format(text)
-    sanitize(markdown_text_replace(markdown(text)),
+    sanitize(text,
              tags: %w(p br img h1 h2 h3 h4 blockquote pre code strong em a ul ol li span),
              attributes: %w(href src class title alt target rel))
   end
