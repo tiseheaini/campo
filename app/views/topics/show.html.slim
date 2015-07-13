@@ -120,7 +120,7 @@ javascript:
   javascript:
     campo.Likes.updateLikes('comment', #{current_user.likes.where(likeable_type: 'Comment', likeable_id: @comments.pluck(:id)).pluck(:likeable_id)});
 
-    var new_editor = new Simditor({
+    var comment_editor = new Simditor({
       textarea: $('#comment-editor #comment_body'),
       toolbar: window.campo.toolbar,
       upload: {
