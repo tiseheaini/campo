@@ -5,8 +5,10 @@
     .row
       .col-md-9
         .panel
-          .panel-heading
-            h1.panel-title = @topic.title
+          .panel-heading.clearfix
+            h1.panel-title.col-md-11 = @topic.title
+            a.col-md-1 href=user_link(@topic.user)
+              img.img-rounded.img-48 alt="avatar" src=@topic.user.avatar.normal.url
           .panel-body
             - cache [@topic, locale] do
               .list-group.list-group-campo
@@ -39,7 +41,7 @@
                         a.btn data-visible-to="creator" href=trash_topic_path(@topic) data-remote="true" data-method="delete" data-confirm=t('.delete_confirm')
                           i.fa.fa-trash-o
                       .pull-right
-                        .user-list
+                        .user-list style="max-width: 627px;"
                           - @like_users.each do |user|
                               a href=user_link(user) id="like-user-#{user.id}-avatar"
                                 img.item src=user.avatar
