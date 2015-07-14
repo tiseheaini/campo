@@ -13,7 +13,10 @@ class ApplicationController < ActionController::Base
 
   def login_required
     unless login?
-      redirect_to login_path(return_to: (request.fullpath if request.get?))
+      respond_to do |format|
+        format.js { redirect_via_turbolinks_to login_path(return_to: (request.fullpath if request.get?)) }
+        format.html { redirect_to login_path(return_to: (request.fullpath if request.get?)) }
+      end
     end
   end
 
