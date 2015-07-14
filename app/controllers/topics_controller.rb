@@ -61,6 +61,9 @@ class TopicsController < ApplicationController
     topic_views = $redis.get("topics:#{@topic.id}:views")
     @topic_views = topic_views ? topic_views : 0
 
+    # 喜欢帖子的用户
+    @like_users = User.find( @topic.likes.limit(6).pluck(:user_id) )
+
     if params[:comment_id] and comment = @topic.comments.find_by(id: params.delete(:comment_id))
       params[:page] = comment.page
     end

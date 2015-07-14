@@ -11,8 +11,6 @@
             - cache [@topic, locale] do
               .list-group.list-group-campo
                 .list-group-item.comment data-creator-id=@topic.user_id
-                  a.list-group-item-avatar href=user_link(@topic.user)
-                    img.img-rounded alt="avatar" src=@topic.user.avatar.normal.url
                   .list-group-item-content
                     .list-group-item-heading
                       a.comment-user href=user_link(@topic.user)
@@ -31,7 +29,7 @@
                     .list-group-item-actions.clearfix
                       .pull-right
                         a.btn id="like-for-topic-#{@topic.id}" href=topic_like_path(@topic) data-remote="true" data-method="post"
-                          i.fa.fa-heart
+                          i.fa.fa-thumbs-up
                           '
                           span.count
                             - if @topic.likes_count > 0
@@ -40,6 +38,11 @@
                           i.fa.fa-pencil
                         a.btn data-visible-to="creator" href=trash_topic_path(@topic) data-remote="true" data-method="delete" data-confirm=t('.delete_confirm')
                           i.fa.fa-trash-o
+                      .pull-right
+                        .user-list
+                          - @like_users.each do |user|
+                              a href=user_link(user) id="like-user-#{user.id}-avatar"
+                                img.item src=user.avatar
 
         .panel#comments
           .panel-heading

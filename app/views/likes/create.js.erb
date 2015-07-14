@@ -1,2 +1,4 @@
 campo.Likes.updateLike('<%= @likeable.class.name.downcase %>', <%= @likeable.id %>);
 $('#like-for-<%= @likeable.class.name.downcase %>-<%= @likeable.id %> .count').text('<%= @likeable.likes.count %>');
+$('#like-for-<%= @likeable.class.name.downcase %>-<%= @likeable.id %>').closest('.list-group-item-actions').find('.user-list').append('\
+    <a href="<%= user_link(current_user) %>" id="like-user-<%= current_user.id %>-avatar"><img class="item" src="<%= current_user.avatar %>"></a>');
