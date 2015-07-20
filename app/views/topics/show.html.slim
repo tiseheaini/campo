@@ -3,7 +3,7 @@
 .main
   .container
     .row
-      .col-md-9
+      .col-md-12
         .panel
           .panel-heading.clearfix
             h1.panel-title.col-md-11 = @topic.title
@@ -14,7 +14,7 @@
               .list-group.list-group-campo
                 .list-group-item.comment data-creator-id=@topic.user_id
                   .list-group-item-content
-                    .list-group-item-heading
+                    .list-group-item-heading style="font-size: 13px; text-align: right;"
                       a.comment-user href=user_link(@topic.user)
                         = @topic.user.username
                       = ' · '
@@ -91,27 +91,6 @@
               '
               = t '.to_comment'
 
-      .col-md-3
-        - if login?
-          .panel
-            .panel-body
-              = render 'subscriptions/subscription', subscribable: @topic
-
-        .panel
-          .panel-heading
-            h4.panel-title
-              = t '.related_topics'
-          .panel-body
-            - cache [@topic, 'related_topics', locale] do
-              .list-group.list-group-campo
-                - more_like_this_topics = @topic.more_like_this
-                - if more_like_this_topics.any?
-                  - more_like_this_topics.each do |topic|
-                    a.list-group-item href=topic_path(topic)
-                      = topic.title
-                - else
-                  .list-group-item.text-center.text-muted
-                    = t '.no_more_topics'
 javascript:
   $(document).ready(function(){
     $("span.view_count").text(#{ @topic_views }+ " 访问");

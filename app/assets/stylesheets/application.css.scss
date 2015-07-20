@@ -7,7 +7,8 @@
 $font-size-base: 15px;
 $brand-primary: #3498db !default;
 $grid-gutter-width:         30px !default;
-$container-large-desktop:   ((940px + $grid-gutter-width)) !default;
+$container-large-desktop:   ((770px + $grid-gutter-width)) !default;
+$container-desktop: ((770px + $grid-gutter-width)) !default;
 
 @import "bootstrap";
 @import "highlight";

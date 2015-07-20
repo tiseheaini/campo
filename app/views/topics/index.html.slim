@@ -12,20 +12,14 @@
 .main
   .container
     .row
-      .col-md-9
+      .col-md-12
         .panel
           .panel-heading.clearfix
             .pull-right
               ul.nav.nav-pills
                 li class=('active' if params[:tab] == 'default')
-                  a href=url_for(tab: 'default')
-                    = t '.default'
-                li class=('active' if params[:tab] == 'hot')
-                  a href=url_for(tab: 'hot')
-                    = t '.hot'
-                li class=('active' if params[:tab] == 'newest')
-                  a href=url_for(tab: 'newest')
-                    = t '.newest'
+                  a.btn href=new_topic_path(category_id: @category.try(:slug)) style="background-color: #5cb85c;"
+                    = t '.create_topic'
             h3.panel-title
               = @category.try(:name) || t('.all_categories')
 
@@ -46,27 +40,6 @@
             .panel-footer.clearfix
               .pull-right
                 = paginate @topics, theme: 'campo'
-
-      .col-md-3
-        .panel
-          .panel-body
-            p style="text-align:center;margin-bottom:0;"
-              | C2qu = C too qu <br />
-              | 大学生的创意社区
-        .panel
-          .panel-body
-            a.btn.btn-success.btn-block href=new_topic_path(category_id: @category.try(:slug))
-              = t '.create_topic'
-        .panel
-          .panel-body
-            ul.nav.nav-pills.nav-stacked.text-center
-              li class=('active' unless @category)
-                a href=topics_path
-                  = t '.all_categories'
-              - Category.order(topics_count: :desc).each do |category|
-                li class=('active' if category == @category)
-                  a href=categoried_topics_path(category_id: category.slug)
-                    = category.name
 
 javascript:
   $(document).ready(function(){
