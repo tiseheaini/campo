@@ -27,6 +27,17 @@ body {
   background-image: url(image_path('bg.gif'));
 }
 
+html, body, .main {height: 100%;}
+body > .main {height: auto; min-height: 100%;}
+.main {padding-bottom: 60px;}
+
+.footer {
+  position: relative;
+  margin-top: -38px; /* footer高度的负值 */
+  height: 60px;
+  clear:both;
+}
+
 .text-hide-overflow {
   overflow: hidden;
   text-overflow: ellipsis;
