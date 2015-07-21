@@ -8,8 +8,10 @@ $(document).on 'click', '.comment [data-reply-to]', ->
     # range.setStart(div, 1)
     # range.setEnd(div, 1)
     # getSelection().addRange(range)
+
     window.comment_editor.setValue( window.comment_editor.getValue() + $(this).data('reply-to') )
     last = window.comment_editor.body.find('p, li, pre, h1, h2, h3, h4, td').last();
+    $('html,body').animate({scrollTop: $("#comment-editor").offset().top}, 800)
     window.comment_editor.focus();
     window.comment_editor.selection.setRangeAfter(last);
   else
