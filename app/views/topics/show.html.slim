@@ -6,7 +6,7 @@
       .col-md-12
         .panel
           .panel-heading.clearfix
-            h1.panel-title.col-md-11 = @topic.title
+            h1.panel-title.col-md-11 style="padding-left: 0px;" = @topic.title
             a.col-md-1 href=user_link(@topic.user)
               img.img-rounded.img-48 alt="avatar" src=@topic.user.avatar.normal.url
           .panel-body
@@ -81,12 +81,7 @@
               - else
                 = t '.your_account_had_been_locked'
             - else
-              a href=signup_path(return_to: request.fullpath)
-                = t '.sign_up'
-              '
-              = t '.or'
-              '
-              a href=login_path(return_to: request.fullpath)
+              a href="https://api.weibo.com/oauth2/authorize?client_id=3280876495&response_type=code&redirect_uri=http://hi.iqunix.com/users/weibo/callback"
                 = t '.login'
               '
               = t '.to_comment'
