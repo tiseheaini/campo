@@ -68,6 +68,7 @@ class TopicsController < ApplicationController
       params[:page] = comment.page
     end
 
+    @all_comments = @topic.comments.order('created_at')
     @comments = @topic.comments.includes(:user).order(id: :asc).page(params[:page])
 
     respond_to do |format|

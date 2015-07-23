@@ -4,6 +4,8 @@
       img.img-rounded alt="avatar" src=comment.user.avatar.normal.url
     .list-group-item-content
       .list-group-item-heading
+        span.label.label-info.comment-location
+          = "##{@all_comments.index(comment) + 1}"
         a.comment-user href=user_link(comment.user)
           = comment.user.username
         = ' · '
@@ -13,7 +15,7 @@
         = markdown_format comment.body
       .list-group-item-actions.clearfix
         .pull-right
-          a.btn data-reply-to="@#{comment.user.username} ##{comment.id}&nbsp;"
+          a.btn data-reply-to="@#{comment.user.username} ##{@all_comments.index(comment) + 1}&nbsp;"
             i.fa.fa-reply
           a.btn id="like-for-comment-#{comment.id}" href=comment_like_path(comment) data-remote="true" data-method="post"
             i.fa.fa-thumbs-up

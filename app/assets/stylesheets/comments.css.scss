@@ -8,6 +8,14 @@
       text-decoration: none;
     }
 
+    .comment-location {
+      position: relative;
+      top: -1px;
+      margin-right: 5px;
+      padding-top: 4px;
+      padding-bottom: 3px;
+    }
+
     .comment-user {
       b {
         color: $gray-dark;
