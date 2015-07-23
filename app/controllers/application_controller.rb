@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   def login_required
     unless login?
       respond_to do |format|
-        format.js { redirect_via_turbolinks_to login_path(return_to: (request.fullpath if request.get?)) }
-        format.html { redirect_to login_path(return_to: (request.fullpath if request.get?)) }
+        format.js { render js: 'swal({title: "你需要微博登录才能继续操作", confirmButtonText: "确定"})' }
+        format.html { redirect_to "https://api.weibo.com/oauth2/authorize?client_id=3280876495&response_type=code&redirect_uri=http://hi.iqunix.com/users/weibo/callback" }
       end
     end
   end

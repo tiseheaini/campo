@@ -6,6 +6,7 @@
 #= require jquery.validate
 #= require jquery.timeago
 #= require nprogress
+#= require sweetalert.min
 #= require module.min
 #= require hotkeys.min
 #= require uploader.min

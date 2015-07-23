@@ -13,6 +13,7 @@ $container-desktop: ((770px + $grid-gutter-width)) !default;
 @import "bootstrap";
 @import "highlight";
 @import "nprogress";
+@import "sweetalert";
 @import "bootstrap_customize";
 @import "users";
 @import "topics";
