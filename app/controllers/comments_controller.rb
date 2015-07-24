@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def cancel
+    @all_comments = Topic.find(@comment.commentable_id).comments.order('created_at')
   end
 
   def update
