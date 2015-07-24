@@ -11,7 +11,7 @@ class Settings::ProfilesControllerTest < ActionController::TestCase
   end
 
   test "should update profile" do
-    patch :update, user: { name: 'change' }
-    assert_equal 'change', current_user.reload.name
+    patch :update, user: { bio: 'update bio' }
+    assert_equal 'update bio', current_user.reload.bio
   end
 end
