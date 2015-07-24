@@ -44,9 +44,12 @@ form.small-textarea {
   display: block;
   padding: 5px 8px;
   font-size: 12px;
-  color: #fff;
+  color: #999;
   cursor: pointer;
-  background-color: #ED2731;
+  background-color: #fff;
+  border-left: 1px solid #e1e1e8;
+  border-bottom: 1px solid #e1e1e8;
+  border-radius: 0 4px 0 4px;
 }
 
 .img-48 {
