@@ -12,7 +12,7 @@ set :repository,  "https://github.com/tiseheaini/campo.git"
 set :scm, "git"
 set :rbenv_ruby_version, "2.0.0-p451"
 #set :rbenv_ruby_version, "2.0.0p451"
-set :user, "tiny"
+set :user, "deployer"
 set :deploy_to, "/home/#{user}/#{application}"
 set :use_sudo, false
 set :ssh_options, { :forward_agent => true }
@@ -30,7 +30,7 @@ set :git_shallow_clone, 1
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 #server "192.168.0.104", :web, :app, :db, :primary => true
-server "c2qu.com", :web, :app, :db, :primary => true
+server "hi.iqunix.com", :web, :app, :db, :primary => true
 set :puma_config_file, "config/puma.rb"
 
 # if you want to clean up old releases on each deploy uncomment this:
@@ -45,12 +45,17 @@ namespace :deploy do
   task :qiniu_upload, :roles => :app do
     run "cd /home/tiny/script; ./qrsync ./qiniu_conf.json"
   end
-  after "deploy:symlink", "deploy:qiniu_upload"
+  #after "deploy:symlink", "deploy:qiniu_upload"
+
+  task :restart, :roles => :app do
+    run "sh /home/#{user}/#{application}/script/resque restart"
+  end
 
   task :symlink_config, :roles => :app do
-    run "ln -s /home/#{user}/script/database.yml #{release_path}/config/database.yml"
-    run "ln -s /home/#{user}/script/config.yml #{release_path}/config/config.yml"
-    run "ln -s /home/#{user}/script/secrets.yml #{release_path}/config/secrets.yml"
+    run "ln -s /home/#{user}/#{application}/script/database.yml #{release_path}/config/database.yml"
+    run "ln -s /home/#{user}/#{application}/script/config.yml #{release_path}/config/config.yml"
+    run "ln -s /home/#{user}/#{application}/script/secrets.yml #{release_path}/config/secrets.yml"
+    run "ln -s /home/#{user}/#{application}/script/wb_871ebcdb7a2d70b1.txt #{release_path}/public/wb_871ebcdb7a2d70b1.txt"
     run "mkdir -p #{shared_path}/public/uploads"
     run "ln -s #{shared_path}/public/uploads #{release_path}/public/uploads"
   end
