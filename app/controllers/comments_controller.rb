@@ -36,7 +36,8 @@ class CommentsController < ApplicationController
   end
 
   def interval
-    circle, interval, ttl = CONFIG['comment']['circle'], CONFIG['comment']['interval'], CONFIG['comment']['interval']
+    circle, interval, times = CONFIG['comment']['circle'], CONFIG['comment']['interval'], CONFIG['comment']['times']
+    ttl = CONFIG['comment']['interval']
     bucket_no = Time.now.to_i % circle / interval
     key = "topic:#{params[:topic_id]}:user:#{current_user.id}:comment:post:bucket:#{bucket_no}"
 
@@ -45,7 +46,7 @@ class CommentsController < ApplicationController
       $redis.expire key, ttl
     else
       count = $redis.get(key).to_i
-      if count >= circle/interval
+      if count >= times
         render js: 'swal({title: "您回帖的频率过高，稍微等一等", timer: 1500})'
       else
         $redis.incr key
