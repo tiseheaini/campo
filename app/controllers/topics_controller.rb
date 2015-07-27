@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   before_action :find_topic, only: [:edit, :update, :trash]
 
   def index
-    @topics = Topic.includes(:user, :category).where(suggest: false).page(params[:page])
+    @topics = Topic.includes(:user, :category).where(suggest: false).where('updated_at > ?', 1.week.ago.localtime).page(params[:page])
     @suggest_topics = Topic.where(suggest: true).order(:id).limit(3)
 
     if params[:category_id]
