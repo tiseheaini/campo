@@ -10,6 +10,20 @@ class CommentsControllerTest < ActionController::TestCase
     end
   end
 
+  test "should create comment interval rate limiting" do
+    login_as create(:user)
+    topic = create(:topic)
+    circle, interval, times = CONFIG['comment']['circle'], CONFIG['comment']['interval'], CONFIG['comment']['times']
+    bucket_no = Time.now.to_i % circle / interval
+    key = "topic:#{topic.id}:user:#{current_user.id}:comment:post:bucket:#{bucket_no}"
+
+    $redis.set(key, times)
+
+    assert_no_difference "topic.comments.count" do
+      xhr :post, :create, topic_id: topic, comment: { body: 'new comment' }
+    end
+  end
+
   test "should create notification job after create comment" do
     login_as create(:user)
     topic = create(:topic)
