@@ -27,6 +27,8 @@
                     = topic.id
                     = '. '
                     b = truncate topic.title
+                    - if topic.updated_at < 1.week.ago.localtime
+                      span.label.label-default.pull-right style="font-size: 12px;" = '隐藏'
                   .text-muted
                     = topic.user.username
                     = ' · '
