@@ -1,0 +1,39 @@
+= form_for product, url: url_for([:admin, product]), html: { class: 'product-form', id: 'product-form' } do |f|
+  = render 'share/flash_messages'
+  = render 'share/form_error_messages', form: f
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control', tabIndex: 1
+  .form-group
+    = f.label :price
+    = f.text_field :price, class: 'form-control', tabIndex: 2
+  .clearfix
+    - if product.new_record?
+      = f.submit t('.create_product'), class: 'btn btn-success', tabIndex: 3
+    - else
+      = f.submit t('.save_changes'), class: 'btn btn-success', tabIndex: 3
+      .pull-right
+        a.btn.btn-danger href=admin_product_path(@product) data-method="delete" data-confirm=t('.permanently_delete_confirm')
+          = t '.permanently_delete'
+
+javascript:
+  $('form.product-form').validate({
+    rules: {
+      'product[name]': {
+        required: true
+      },
+      'product[price]': {
+        required: true,
+        number: true
+      }
+    },
+    messages: {
+      'product[name]': {
+        required: '#{@product.errors.generate_message :name, :blank}'
+      },
+      'product[price]': {
+        required: '#{@product.errors.generate_message :price, :blank}',
+        number: '#{@product.errors.generate_message :price, :number}'
+      }
+    }
+  });

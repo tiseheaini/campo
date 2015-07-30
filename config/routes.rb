@@ -119,6 +119,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :products do
+      collection do
+        get :trashed
+      end
+    end
+
     resources :comments, only: [:index, :show, :update] do
       collection do
         get :trashed

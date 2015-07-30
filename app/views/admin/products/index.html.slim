@@ -1,0 +1,30 @@
+.sub-navbar
+  ul.nav.sub-navbar-nav
+    li class=('active' if action_name == 'index')
+      a href=admin_products_path
+         = t '.normal'
+    li class=('active' if action_name == 'trashed')
+      a href=trashed_admin_products_path
+         =t '.trashed'
+
+.main
+  .container
+    .row
+      .col-md-8.col-md-push-2
+        .panel
+          .panel-heading.claerfix
+            .pull-right
+              a.btn.btn-default.btn-success href=new_admin_product_path
+                = t '.new_products'
+            h2.panel-title
+              = t '.products'
+          .panel-body
+            .list-group.list-group-campo
+              - @products.each do |product|
+                a.list-group-item href=admin_product_path(product)
+                  .list-group-item-heading
+                    b = product.name
+                    '
+                    span.text-muted = product.name
+                  .text-muted
+                    = t '.topics_count', count: product.name

@@ -15,6 +15,9 @@ zh-CN:
         comments_count: "评论数"
         created_at: "创建于"
         user: "用户"
+      product:
+        name: "名称"
+        price: "价钱(元)"
       user:
         avatar: "头像"
         bio: "简介"
@@ -33,6 +36,10 @@ zh-CN:
               format: "无效的邮件格式"
             username:
               format: "只能使用字母、数字或 - 号，并且不能以 - 号开头"
+        product:
+          attributes:
+            price:
+              number: "只能填写数字"
   admin:
     attachments:
       index:
@@ -87,6 +94,19 @@ zh-CN:
         no_category: "不分类"
         restore: "还原"
         save_changes: "保存修改"
+    products:
+      form:
+        create_product: "创建产品"
+        permanently_delete: "彻底删除"
+        permanently_delete_confirm: "你确定要彻底删除此产品吗？"
+        save_changes: "保存修改"
+      index:
+        normal: "正常"
+        trashed: "回收站"
+        products: "产品"
+        new_products: "新产品"
+      new:
+        new_products: "新产品"
     users:
       flashes:
         successfully_destroy: "成功彻底删除用户"
@@ -125,6 +145,7 @@ zh-CN:
       categories: "分类"
       comments: "评论"
       topics: "话题"
+      products: "产品"
       users: "用户"
     application:
       comments: "评论"

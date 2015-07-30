@@ -3,8 +3,8 @@
 FactoryGirl.define do
   factory :product do
     user
-    price 1.5
-    name "MyString"
+    price 10.5
+    name "ProductString"
     trashed false
   end
 end

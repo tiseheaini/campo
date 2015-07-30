@@ -15,6 +15,9 @@ en:
         comments_count: Comment count
         created_at: Created at
         user: User
+      product:
+        name: Name
+        price: Price
       user:
         avatar: Avatar
         bio: Bio
@@ -34,6 +37,10 @@ en:
             username:
               format: may only contain alphanumeric characters or dashes and cannot
                 begin with a dash
+        product:
+          attributes:
+            price:
+              number: Only Number
   admin:
     attachments:
       index:
@@ -89,6 +96,20 @@ en:
         no_category: No category
         restore: Restore
         save_changes: Save changes
+    products:
+      form:
+        create_category: Create product
+        permanently_delete: Permanently delete
+        permanently_delete_confirm: Are you sure you want to permanently delete this
+          product?
+        save_changes: Save changes
+      index:
+        normal: Normal
+        products: Products
+        trashed: Trashed
+        new_products: New Product
+      new:
+        new_products: New Product
     users:
       flashes:
         successfully_destroy: Successfully destroy
@@ -128,6 +149,7 @@ en:
       categories: Categories
       comments: Comments
       topics: Topics
+      products: Products
       users: Users
     application:
       comments: Comments
