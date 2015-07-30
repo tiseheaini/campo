@@ -1,4 +1,4 @@
-= form_for category, url: url_for([:admin, category]), html: { class: 'category-form' } do |f|
+= form_for category, url: url_for([:admin, category]), html: { class: 'category-form', id: 'category-form' } do |f|
   = render 'share/flash_messages'
   = render 'share/form_error_messages', form: f
   .form-group
