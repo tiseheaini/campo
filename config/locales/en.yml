@@ -97,12 +97,19 @@ en:
         restore: Restore
         save_changes: Save changes
     products:
+      flashes:
+        successfully_created: Successfully created
+        successfully_destroy: Successfully destroy
+        successfully_trashed: Successfully trashed
+        successfully_updated: Successfully updated
+        successfully_restored: Successfully restored
       form:
         create_category: Create product
         permanently_delete: Permanently delete
         permanently_delete_confirm: Are you sure you want to permanently delete this
           product?
         save_changes: Save changes
+        restore: Restore
       index:
         normal: Normal
         products: Products

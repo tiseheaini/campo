@@ -95,11 +95,18 @@ zh-CN:
         restore: "还原"
         save_changes: "保存修改"
     products:
+      flashes:
+        successfully_created: "成功创建产品"
+        successfully_destroy: "成功彻底删除产品"
+        successfully_trashed: "成功删除产品"
+        successfully_updated: "成功更新产品"
+        successfully_restored: "成功还原产品"
       form:
         create_product: "创建产品"
         permanently_delete: "彻底删除"
         permanently_delete_confirm: "你确定要彻底删除此产品吗？"
         save_changes: "保存修改"
+        restore: "还原"
       index:
         normal: "正常"
         trashed: "回收站"

@@ -1,0 +1,11 @@
+- @page_title = @product.name
+
+.main
+  .container
+    .row
+      .col-md-8.col-md-push-2
+        .panel
+          .panel-heading
+            h3.panel-title = @product.name
+          .panel-body#product-form
+            = render 'form', product: @product

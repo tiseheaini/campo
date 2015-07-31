@@ -120,9 +120,9 @@ Rails.application.routes.draw do
     end
 
     resources :products do
-      collection do
-        get :trashed
-      end
+      get :trashed, on: :collection
+      delete :trash, on: :member
+      patch :restore, on: :member
     end
 
     resources :comments, only: [:index, :show, :update] do

@@ -13,8 +13,12 @@
     - else
       = f.submit t('.save_changes'), class: 'btn btn-success', tabIndex: 3
       .pull-right
-        a.btn.btn-danger href=admin_product_path(@product) data-method="delete" data-confirm=t('.permanently_delete_confirm')
-          = t '.permanently_delete'
+        - if @product.trashed?
+          a.btn.btn-default href=restore_admin_product_path(@product) data-method="patch"
+             = t '.restore'
+        - else
+          a.btn.btn-danger href=trash_admin_product_path(@product) data-method="delete" data-confirm=t('.permanently_delete_confirm')
+            = t '.permanently_delete'
 
 javascript:
   $('form.product-form').validate({
