@@ -28,7 +28,7 @@ class TopicsController < ApplicationController
 
     # puts @topics_views_hash # topics 访问量
     # => { "topics:5:views" : "5", "topics:2:views" : null, "topics:8:views" : "1" }
-    redis_topic_keys = @topics.map {|topic| "topics:#{topic.id}:views" }
+    redis_topic_keys = (@topics + @suggest_topics).map {|topic| "topics:#{topic.id}:views" }
     if redis_topic_keys.present?
       @topics_views_hash = (Hash[redis_topic_keys.zip $redis.mget(redis_topic_keys)]).to_json
     else
