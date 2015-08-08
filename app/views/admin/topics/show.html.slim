@@ -57,7 +57,8 @@ javascript:
       'fileKey': window.campo.file_key,
       'connectionCount': 3,
       'leaveConfirm': '正在上传文件，如果离开上传会自动取消'
-    }
+    },
+    allowedAttributes: { a: ['id', 'href', 'target'] }
   });
 
   $("body").delegate("#topic-editor", "submit", function(){

@@ -1,0 +1,27 @@
+- @page_title = @product.name
+
+.main
+  .container
+    .row
+      .col-md-12
+        .panel
+          .panel-heading.clearfix
+            h1.panel-title.col-md-11 style="padding-left: 0px;"
+              i.fa.fa-file-text-o = " 提交订单"
+          .panel-body
+            .list-group.list-group-campo.clearfix
+              .col-md-12.order-sub-header style="padding: 0 20px;"
+                .col-md-2.col-md-offset-6.text-right = "单价"
+                .col-md-2.text-right = "数量"
+                .col-md-2.text-right = "总价"
+              .col-md-12.order-sub-group
+                .col-md-6
+                  = @product.name
+                .col-md-2.text-right
+                  == "&#165;  #{@product.price}"
+                .col-md-2.text-right
+                  = '2'
+                .col-md-2.text-right
+                  == "&#165;  #{@product.price * 2}"
+
+

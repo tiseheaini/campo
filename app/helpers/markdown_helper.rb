@@ -57,7 +57,7 @@ module MarkdownHelper
   def markdown_format(text)
     sanitize(text,
              tags: %w(p br img h1 h2 h3 h4 blockquote pre code strong em a ul ol li span),
-             attributes: %w(href src class title alt target rel))
+             attributes: %w(href src class id title alt target rel))
   end
 
   def markdown_area(form, name, options = {})

@@ -17,6 +17,7 @@ $container-desktop: ((770px + $grid-gutter-width)) !default;
 @import "bootstrap_customize";
 @import "users";
 @import "topics";
+@import "products";
 @import "comments";
 @import "notifications";
 @import "subscriptions";

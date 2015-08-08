@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     resource :subscription, only: [:update, :destroy]
   end
 
+  resources :orders, only: [:new, :create]
+
   resources :topics, only: [:index, :show, :new, :create, :edit, :update], concerns: [:commentable, :likeable, :subscribable] do
     collection do
       get 'categoried/:category_id', to: 'topics#index', as: :categoried

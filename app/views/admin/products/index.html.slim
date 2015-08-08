@@ -24,7 +24,21 @@
                 a.list-group-item href=admin_product_path(product)
                   .list-group-item-heading
                     b = product.name
-                    '
-                    span.text-muted = product.name
-                  .text-muted
-                    = t '.topics_count', count: product.name
+                  .row
+                    .col-md-12
+                      .input-group
+                        input.form-control.link type="text" readonly="readonly" value='#{product_link(product).strip}'
+                        span.input-group-btn
+                          button.btn.btn-default.copy type="button" = "复制"
+
+javascript:
+  var copy_btn = $('.input-group .copy');
+  var client = new ZeroClipboard( copy_btn );
+  client.on('copy', function (event) {
+    var text = $(event.target).closest('.input-group').find('.link').val();
+    event.clipboardData.setData( "text/html", text );
+  });
+
+  $(document).delegate('.input-group .copy, .input-group input.form-control', 'click', function(event){
+    event.preventDefault();
+  });
