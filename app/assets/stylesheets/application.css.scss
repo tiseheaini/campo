@@ -29,13 +29,13 @@ body {
   background-image: url(image_path('bg.gif'));
 }
 
-html, body, .main {height: 100%;}
-body > .main {height: auto; min-height: 100%;}
-.main {padding-bottom: 60px;}
+html, body, #page {height: 100%;}
+body > #page {height: auto; min-height: 100%;}
+#page {padding-bottom: 60px;}
 
 .footer {
   position: relative;
-  margin-top: -38px; /* footer高度的负值 */
+  margin-top: -60px; /* footer高度的负值 */
   height: 60px;
   clear:both;
 }

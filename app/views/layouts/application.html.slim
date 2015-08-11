@@ -16,64 +16,65 @@ html
         };
 
   body
-    nav.navbar.navbar-static-top
-      .container
-        .navbar-header
-          a.navbar-brand href=root_path style="background-color: #0098D8; margin-left: 0;"
-            = image_tag("logo.png", style: "width: 100px;margin-top: -4px;")
-        ul.nav.navbar-nav.navbar-right
-          - if login?
-            li class=('active' if request.original_fullpath =~ /^\/notifications/)
-              a.notifications-bell href=notifications_path
-                i.fa.fa-bell-o
-                - if unread_notifications_count > 0
-                  .badge = unread_notifications_count > 99 ? '99+' : unread_notifications_count
-            li.dropdown
-              a.dropdown-toggle data-toggle="dropdown" href='#'
-                img.img-circle.img-avatar src=current_user.avatar.normal.url
-                '
-                = current_user.username
-                '
-                i.fa.fa-caret-down
-              ul.dropdown-menu.dropdown-menu-right
-                li
-                  a href=user_root_path(username: current_user.username)
-                    = t '.profile'
-                li.divider
-                li.dropdown-header
-                  = t '.likes'
-                li
-                  a href=likes_user_topics_path(username: current_user.username)
-                    = t '.topics'
-                li
-                  a href=likes_user_comments_path(username: current_user.username)
-                    = t '.comments'
-                li.divider
-                li
-                  a href=settings_account_path
-                    = t '.settings'
-                li.divider
-                li
-                  a href=logout_path data-method="delete"
-                    = t '.logout'
-          - else
-            li
-              a href="https://api.weibo.com/oauth2/authorize?client_id=3280876495&response_type=code&redirect_uri=http://hi.iqunix.com/users/weibo/callback"
-                img alt="sign_weibo" src=image_path("sign_weibo.png")
-              /a href=login_path(return_to: params[:return_to] || return_to_path(request.fullpath))
-                = t '.sign_in'
-          li.navbar-toggle
-            a.tiem type="button" data-toggle="collapse" data-target="#navbar" href="javascript:void(0);"
-              i.fa.fa-bars
-        #navbar.collapse.navbar-collapse
-          ul.nav.navbar-nav
-            li class=('active' if request.original_fullpath =~ /^\/topics/)
-              a href=topics_path
-                = t '.community'
+    #page
+      nav.navbar.navbar-static-top
+        .container
+          .navbar-header
+            a.navbar-brand href=root_path style="background-color: #0098D8; margin-left: 0;"
+              = image_tag("logo.png", style: "width: 100px;margin-top: -4px;")
+          ul.nav.navbar-nav.navbar-right
+            - if login?
+              li class=('active' if request.original_fullpath =~ /^\/notifications/)
+                a.notifications-bell href=notifications_path
+                  i.fa.fa-bell-o
+                  - if unread_notifications_count > 0
+                    .badge = unread_notifications_count > 99 ? '99+' : unread_notifications_count
+              li.dropdown
+                a.dropdown-toggle data-toggle="dropdown" href='#'
+                  img.img-circle.img-avatar src=current_user.avatar.normal.url
+                  '
+                  = current_user.username
+                  '
+                  i.fa.fa-caret-down
+                ul.dropdown-menu.dropdown-menu-right
+                  li
+                    a href=user_root_path(username: current_user.username)
+                      = t '.profile'
+                  li.divider
+                  li.dropdown-header
+                    = t '.likes'
+                  li
+                    a href=likes_user_topics_path(username: current_user.username)
+                      = t '.topics'
+                  li
+                    a href=likes_user_comments_path(username: current_user.username)
+                      = t '.comments'
+                  li.divider
+                  li
+                    a href=settings_account_path
+                      = t '.settings'
+                  li.divider
+                  li
+                    a href=logout_path data-method="delete"
+                      = t '.logout'
+            - else
+              li
+                a href="https://api.weibo.com/oauth2/authorize?client_id=3280876495&response_type=code&redirect_uri=http://hi.iqunix.com/users/weibo/callback"
+                  img alt="sign_weibo" src=image_path("sign_weibo.png")
+                /a href=login_path(return_to: params[:return_to] || return_to_path(request.fullpath))
+                  = t '.sign_in'
+            li.navbar-toggle
+              a.tiem type="button" data-toggle="collapse" data-target="#navbar" href="javascript:void(0);"
+                i.fa.fa-bars
+          #navbar.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li class=('active' if request.original_fullpath =~ /^\/topics/)
+                a href=topics_path
+                  = t '.community'
 
-    - if login? and !current_user.confirmed?
-      = render 'share/user_confirm_required'
-    = yield
+      - if login? and !current_user.confirmed?
+        = render 'share/user_confirm_required'
+      = yield
 
     .footer
       .container
