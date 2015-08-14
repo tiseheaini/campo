@@ -123,6 +123,7 @@ Rails.application.routes.draw do
 
     resources :products do
       get :trashed, on: :collection
+      post :attribute, on: :collection
       delete :trash, on: :member
       patch :restore, on: :member
     end

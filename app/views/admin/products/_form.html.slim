@@ -4,9 +4,11 @@
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control', tabIndex: 1
+  .form-group.clearfix
+    .btn.btn-primary.btn-sm.pull-right onclick="return product.addAttr( $(this).closest('#product-form') );"
+      = '添加属性'
   .form-group
-    = f.label :price
-    = f.text_field :price, class: 'form-control', tabIndex: 2
+    = render partial: 'item_table', object: @product.item_attr, as: :attrs
   .clearfix
     - if product.new_record?
       = f.submit t('.create_product'), class: 'btn btn-success', tabIndex: 3
@@ -19,6 +21,49 @@
         - else
           a.btn.btn-danger href=trash_admin_product_path(@product) data-method="delete" data-confirm=t('.permanently_delete_confirm')
             = t '.permanently_delete'
+
+script id="add-attr-template" type="text/html" style="display:none;"
+  .modal.fade.item-modal
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true" == "&times;"
+          h4.modal-title = "新建属性"
+
+        form.modal-body.item-attr.clearfix action="/admin/products/attribute" method="post" data-remote=true
+          .row
+            .form-group.col-md-5 style="margin-bottom: 0px;"
+              label = "商品属性"
+            .form-group.col-md-5 style="margin-bottom: 0px;"
+              label = "价格"
+          .item-attr-list
+            .row
+              .form-group.col-md-5
+                input.form-control type="text" name="attr[0][name]"
+              .form-group.col-md-5
+                input.form-control type="text" name="attr[0][price]" placeholder="价格"
+              .form-group.col-md-2
+                span.btn.btn-default disabled="disabled" onclick="return product.delAttrVal( $(this).closest('.row') );" = "删除"
+          .form-group.col-md-2.col-md-offset-10.text-right
+            span.btn.btn-success onclick="return product.insertAttrVal( $(this).closest('.modal-body').find('.item-attr-list') );" = "添加"
+
+        .modal-footer.clearfix
+          .col-md-12
+            button.btn.btn-default type="button" data-dismiss="modal" = "关闭"
+            button.btn.btn-primary type="button" onclick="return $('form.item-attr').submit();" = "保存"
+
+        javascript:
+          $('form.modal-body').validate({
+            rules: {
+              'attr[0][name]': 'required',
+              'attr[0][price]': 'required'
+            },
+            messages: {
+              'attr[0][name]': '#{@product.errors.generate_message :name, :blank}',
+              'attr[0][price]': '#{@product.errors.generate_message :name, :blank}'
+            }
+          });
 
 javascript:
   $('form.product-form').validate({

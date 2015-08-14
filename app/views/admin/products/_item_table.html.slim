@@ -1,0 +1,22 @@
+- if attrs.size > 0
+  table.table.table-hover.item-table
+    thead
+      tr
+        th = "商品属性"
+        th = "价格"
+        th = "操作"
+    tbody
+      - attrs.each do |key|
+        tr
+          th = key.name
+          th = key.price
+          th = 'edit'
+          = hidden_field_tag('product[ids][]', key.id)
+- else
+  table.table.table-hover.item-table
+    thead
+      tr
+        th = "商品属性"
+        th = "价格"
+        th = "操作"
+    tbody

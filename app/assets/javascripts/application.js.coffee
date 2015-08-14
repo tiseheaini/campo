@@ -11,6 +11,7 @@
 #= require hotkeys.min
 #= require uploader.min
 #= require simditor.min
+#= require template
 #= require campo
 #= require_tree ./plugins
 

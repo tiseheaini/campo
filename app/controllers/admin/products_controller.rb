@@ -14,9 +14,20 @@ class Admin::ProductsController < Admin::ApplicationController
 
     if @product.save
       flash[:success] = I18n.t('admin.products.flashes.successfully_created')
+      ItemAttr.where(id: params[:product][:ids].map(&:to_i)).update_all(product_id: @product.id)
       redirect_to admin_product_path(@product)
     else
       render :new
+    end
+  end
+
+  def attribute
+    @result = []
+    ActiveRecord::Base.transaction do
+      attr_params.values.each do |value|
+        item_attr = ItemAttr.create!(name: value['name'], price: value['price'])
+        @result << item_attr
+      end
     end
   end
 
@@ -47,8 +58,12 @@ class Admin::ProductsController < Admin::ApplicationController
 
   private
 
+  def attr_params
+    params.require(:attr).permit!
+  end
+
   def product_params
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name)
   end
 
   def find_product
