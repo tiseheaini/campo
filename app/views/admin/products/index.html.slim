@@ -21,7 +21,7 @@
           .panel-body
             .list-group.list-group-campo
               - @products.each do |product|
-                a.list-group-item href=admin_product_path(product)
+                div.list-group-item
                   .list-group-item-heading
                     b = product.name
                   .row
@@ -29,6 +29,7 @@
                       .input-group
                         input.form-control.link type="text" readonly="readonly" value='#{product_link(product).strip}'
                         span.input-group-btn
+                          a.btn.btn-default href=admin_product_path(product) = "编辑"
                           button.btn.btn-default.copy type="button" = "复制"
 
 javascript:

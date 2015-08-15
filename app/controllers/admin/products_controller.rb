@@ -21,6 +21,15 @@ class Admin::ProductsController < Admin::ApplicationController
     end
   end
 
+  def attribute_edit
+    @attr = ItemAttr.find(params[:id])
+  end
+
+  def attribute_update
+    @attr = ItemAttr.find(params[:id])
+    @attr.update(params.require(:attr).permit(:name, :price))
+  end
+
   def attribute
     @result = []
     ActiveRecord::Base.transaction do

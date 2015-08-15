@@ -1,0 +1,4 @@
+var _this = $('form#product-form');
+_this.siblings('.item-edit-modal').remove();
+_this.after('<%=j render partial: 'item_edit_template' %>');
+_this.siblings('.item-edit-modal').modal();

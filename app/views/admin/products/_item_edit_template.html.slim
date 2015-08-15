@@ -1,0 +1,25 @@
+.modal.fade.item-edit-modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" == "&times;"
+        h4.modal-title = "编辑属性"
+
+      form.item-attr.clearfix action=attribute_update_admin_product_path method="put" data-remote=true
+        .modal-body
+          .row
+            .form-group.col-md-6 style="margin-bottom: 0px;"
+              label = "商品属性"
+            .form-group.col-md-6 style="margin-bottom: 0px;"
+              label = "价格"
+          .item-attr-list
+            .row
+              .form-group.col-md-6
+                input.form-control type="text" name="attr[name]" value=@attr.name
+              .form-group.col-md-6
+                input.form-control type="text" name="attr[price]" value=@attr.price
+
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" = "关闭"
+          input.btn.btn-primary type="submit" value="更新"
