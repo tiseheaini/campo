@@ -6,8 +6,8 @@
           span aria-hidden="true" == "&times;"
         h4.modal-title = "编辑属性"
 
-      form.item-attr.clearfix action=attribute_update_admin_product_path method="put" data-remote=true
-        .modal-body
+      form.item-edit-attr action=attribute_update_admin_product_path method="put" data-remote=true
+        .modal-body.clearfix
           .row
             .form-group.col-md-6 style="margin-bottom: 0px;"
               label = "商品属性"
@@ -23,3 +23,23 @@
         .modal-footer
           button.btn.btn-default type="button" data-dismiss="modal" = "关闭"
           input.btn.btn-primary type="submit" value="更新"
+
+      javascript:
+        $('form.item-edit-attr').validate({
+          rules: {
+            'attr[name]': {
+              required: true
+            },
+            'attr[price]': {
+              required: true
+            }
+          },
+          messages: {
+            'attr[name]': {
+              required: "不能为空字符"
+            },
+            'attr[price]': {
+              required: "不能为空字符"
+            }
+          }
+        });

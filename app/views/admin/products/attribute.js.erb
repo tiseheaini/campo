@@ -8,4 +8,4 @@ var render = template.compile(tpl);
 <% @result.each do |result| %>
   $('table.item-table').append(render(<%=raw result.to_json %>));
 <% end %>
-$('.item-modal').modal('hide');
+$('.item-new-modal').modal('hide');
