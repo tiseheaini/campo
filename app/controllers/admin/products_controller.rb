@@ -30,6 +30,10 @@ class Admin::ProductsController < Admin::ApplicationController
     @attr.update(params.require(:attr).permit(:name, :price))
   end
 
+  def attribute_trash
+    @attr = ItemAttr.find(params[:id])
+  end
+
   def attribute
     @result = []
     ActiveRecord::Base.transaction do
@@ -53,7 +57,6 @@ class Admin::ProductsController < Admin::ApplicationController
   end
 
   def trash
-    puts @product.id
     Product.with_trashed.find(11).trash
     flash[:success] = I18n.t('admin.products.flashes.successfully_trashed')
     redirect_to admin_product_path(@product)

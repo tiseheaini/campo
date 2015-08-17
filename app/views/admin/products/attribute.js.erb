@@ -1,11 +1,4 @@
-var tpl = '<tr>\
-            <th>{{ name }}</th>\
-            <th>{{ price }}</th>\
-            <th>edit</th>\
-            <input type="hidden" name="product[ids][]" value="{{ id }}">\
-          </tr>';
-var render = template.compile(tpl);
 <% @result.each do |result| %>
-  $('table.item-table').append(render(<%=raw result.to_json %>));
+  $('table.item-table').append('<%=j render partial: 'product_attr', object: result, as: :attr %>');
 <% end %>
 $('.item-new-modal').modal('hide');

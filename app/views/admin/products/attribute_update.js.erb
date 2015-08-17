@@ -1,8 +1,2 @@
 $('.item-edit-modal').modal('hide');
-var tpl = '<tr class="attr-id-<%= @attr.id %>">\
-            <th><%= @attr.name %></th>\
-            <th><%= @attr.price %></th>\
-            <th><%= link_to content_tag(:span, '编辑', class: 'btn btn-default btn-sm'), attribute_edit_admin_product_path(@attr.id), remote: true %></th>\
-            <%= hidden_field_tag('product[ids][]', @attr.id) %>\
-          </tr>';
-$('tr.attr-id-<%= @attr.id %>').replaceWith(tpl);
+$('tr.attr-id-<%= @attr.id %>').replaceWith('<%=j render partial: 'product_attr', object: @attr, as: :attr %>');

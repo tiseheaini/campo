@@ -126,6 +126,7 @@ Rails.application.routes.draw do
       post :attribute, on: :collection
       get :attribute_edit, on: :member
       put :attribute_update, on: :member
+      delete :attribute_trash, on: :member
       delete :trash, on: :member
       patch :restore, on: :member
     end

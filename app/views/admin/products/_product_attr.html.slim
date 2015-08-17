@@ -1,0 +1,7 @@
+tr class="attr-id-#{attr.id}"
+  th.col-md-4 = attr.name
+  th.col-md-4 = attr.price
+  th.col-md-4
+    = link_to content_tag(:span, '编辑', class: 'btn btn-default btn-sm'), attribute_edit_admin_product_path(attr.id), remote: true
+    = link_to content_tag(:span, '删除', class: 'btn btn-default btn-sm'), attribute_trash_admin_product_path(attr.id), style: 'margin-left: 10px;', remote: true, method: 'delete', 'data-confirm' => "确定要删除该商品属性？"
+  = hidden_field_tag('product[ids][]', attr.id)

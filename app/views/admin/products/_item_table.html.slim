@@ -1,22 +1,9 @@
-- if attrs.size > 0
-  table.table.table-hover.item-table
-    thead
-      tr
-        th = "商品属性"
-        th = "价格"
-        th = "操作"
-    tbody
-      - attrs.each do |attr|
-        tr class="attr-id-#{attr.id}"
-          th = attr.name
-          th = attr.price
-          th = link_to content_tag(:span, '编辑', class: 'btn btn-default btn-sm'), attribute_edit_admin_product_path(attr.id), remote: true
-          = hidden_field_tag('product[ids][]', attr.id)
-- else
-  table.table.table-hover.item-table
-    thead
-      tr
-        th = "商品属性"
-        th = "价格"
-        th = "操作"
-    tbody
+table.table.table-hover.item-table
+  thead
+    tr
+      th.col-md-4 = "商品属性"
+      th.col-md-4 = "价格"
+      th.col-md-4 = "操作"
+  tbody
+    - if attrs.size > 0
+      = render partial: 'product_attr', collection: attrs, as: :attr
