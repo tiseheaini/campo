@@ -58,11 +58,17 @@ script id="add-attr-template" type="text/html"
           $('form.item-new-attr').validate({
             rules: {
               'attr[0][name]': 'required',
-              'attr[0][price]': 'required'
+              'attr[0][price]': {
+                required: true,
+                number: true
+              }
             },
             messages: {
               'attr[0][name]': '#{@product.errors.generate_message :name, :blank}',
-              'attr[0][price]': '#{@product.errors.generate_message :name, :blank}'
+              'attr[0][price]': {
+                required: '#{@product.errors.generate_message :name, :blank}',
+                number: '价格必须为数字'
+              }
             }
           });
 

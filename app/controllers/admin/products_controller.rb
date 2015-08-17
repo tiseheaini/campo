@@ -49,6 +49,7 @@ class Admin::ProductsController < Admin::ApplicationController
 
   def update
     if @product.update_attributes product_params
+      @product.update_attr(@product.item_attr.pluck(:id), params[:product][:ids].map(&:to_i))
       flash[:success] = I18n.t('admin.products.flashes.successfully_updated')
       redirect_to admin_product_path(@product)
     else
