@@ -78,15 +78,15 @@ gem 'http_accept_language', '~> 2.0.1'
 gem 'rails-i18n', '~> 4.0.1'
 
 # redis
-gem 'redis', '~> 3.0.7'
-gem 'hiredis', '~> 0.4.5'
+gem 'redis', '~> 3.2', '>= 3.2.2'
+gem 'hiredis', '~> 0.6.0'
 
 # Background jobs
 gem 'resque', '~> 1.25.1'
 gem 'resque_mailer', '~> 2.2.6'
 
 # puma
-gem 'puma'
+#gem 'puma'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
