@@ -8,6 +8,11 @@ class AdminConstraint
 end
 
 Rails.application.routes.draw do
+  namespace :auth do
+    get 'signin'
+  end
+
+  get 'ext_signin', to: 'sessions#ext_signin', as: 'ext_signin'
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   post 'login', to: 'sessions#create'

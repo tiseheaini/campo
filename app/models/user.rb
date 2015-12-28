@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
   scope :unlocked, -> { where(locked_at: nil) }
   scope :locked, -> { where.not(locked_at: nil) }
 
+  def data
+    self.slice(:id, :name, :email, :username, :avatar, :locale).merge({role: self.admin?}).to_json
+  end
+
   def remember_token
     [id, Digest::SHA512.hexdigest(password_digest)].join('$')
   end

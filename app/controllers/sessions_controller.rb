@@ -28,6 +28,11 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
+  def ext_signin
+    session[:return_to] = params[:return_to]
+    redirect_to "https://api.weibo.com/oauth2/authorize?client_id=3280876495&response_type=code&redirect_uri=http://hi.iqunix.com/users/weibo/callback"
+  end
+
   private
 
   def access_limiter

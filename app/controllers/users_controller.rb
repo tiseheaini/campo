@@ -52,10 +52,29 @@ class UsersController < ApplicationController
     end
     $redis.set("weibo:#{auth_user.id}:avatar", resp['avatar_large'])
 
-    redirect_to root_path
+    if session[:return_to]
+      store_session(auth_user)
+      return_url = add_param(session.delete(:return_to), "session_key", session.id)
+      redirect_to return_url
+    else
+      redirect_to root_path
+    end
   end
 
   private
+
+  def store_session(user)
+    key = "user:#{session.id}"
+    data = user.data.to_s
+    $redis.set(key, data, ex: 7.days)
+  end
+
+  def add_param(url, param_name, param_value)
+    uri = URI(url)
+    params = URI.decode_www_form(uri.query || '') << [param_name, param_value]
+    uri.query = URI.encode_www_form(params)
+    uri.to_s
+  end
 
   def find_user_by_uid(provider, uid)
     authorization = Authorization.find_by provider: provider, uid: uid
