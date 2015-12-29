@@ -8,9 +8,8 @@ class AdminConstraint
 end
 
 Rails.application.routes.draw do
-  namespace :auth do
-    get 'signin'
-  end
+  match '/auth/signin', to: "auth#signin", via: [:get, :post]
+  match '/auth/signup', to: "auth#signup", via: [:get, :post]
 
   get 'ext_signin', to: 'sessions#ext_signin', as: 'ext_signin'
   get 'signup', to: 'users#new', as: 'signup'

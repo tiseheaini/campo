@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :store_return_to
+
   helper_method :login?, :current_user
 
   before_action :set_locale
@@ -10,6 +12,25 @@ class ApplicationController < ActionController::Base
   private
 
   class AccessDenied < Exception; end
+
+  def store_return_to
+    if params[:return_to].present?
+      session[:return_to] = params[:return_to]
+    end
+  end
+
+  def add_param(url, param_name, param_value)
+    uri = URI(url)
+    params = URI.decode_www_form(uri.query || '') << [param_name, param_value]
+    uri.query = URI.encode_www_form(params)
+    uri.to_s
+  end
+
+  def store_session(user)
+    key = "user:#{session.id}"
+    data = user.data.to_s
+    $redis.set(key, data, ex: 7.days)
+  end
 
   def login_required
     unless login?

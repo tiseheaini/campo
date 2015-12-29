@@ -63,19 +63,6 @@ class UsersController < ApplicationController
 
   private
 
-  def store_session(user)
-    key = "user:#{session.id}"
-    data = user.data.to_s
-    $redis.set(key, data, ex: 7.days)
-  end
-
-  def add_param(url, param_name, param_value)
-    uri = URI(url)
-    params = URI.decode_www_form(uri.query || '') << [param_name, param_value]
-    uri.query = URI.encode_www_form(params)
-    uri.to_s
-  end
-
   def find_user_by_uid(provider, uid)
     authorization = Authorization.find_by provider: provider, uid: uid
     if authorization

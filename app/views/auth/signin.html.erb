@@ -5,20 +5,28 @@
     </div>
 
     <div class="account">
-      <a href="">
-        <%= link_to ext_signin_path(return_to: params[:return_to]) do %>
-          <img alt="sign_weibo" src=<%= image_path("sign_weibo.png") %> />
-        <% end %>
-      </a>
-      <span class="signup">注册</span>
+      <%= link_to ext_signin_path(return_to: params[:return_to]) do %>
+        <img alt="sign_weibo" src=<%= image_path("sign_weibo.png") %> />
+      <% end %>
+      <%= link_to auth_signup_path(return_to: session[:return_to]) do %>
+        <span class="signup">注册</span>
+      <% end %>
     </div>
   </div>
 
   <div class="auth-content">
+    <% if flash[:warning] %>
+      <div class="alert alert-dismissible alert-warning">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h4 style="font-weight: 800;">警告!</h4>
+        <p style="font-weight: 800;"><%= flash[:warning] %></p>
+      </div>
+    <% end %>
+
     <div class="sign-form">
       <div class="auth-info">同样可以使用 iqunix 社区账号进行访问</div>
 
-      <%= form_tag login_path do %>
+      <%= form_tag auth_signin_path do %>
         <div class="form-group">
           <%= label_tag '账号' %>
           <%= text_field_tag :login, params[:login], placeholder: '用户名或密码', tabindex: 1, class: 'form-control' %>
