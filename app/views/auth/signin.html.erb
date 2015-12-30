@@ -6,7 +6,7 @@
 
     <div class="account">
       <%= link_to ext_signin_path(return_to: params[:return_to]) do %>
-        <img alt="sign_weibo" src=<%= image_path("sign_weibo.png") %> />
+        <%= image_tag("sign_weibo.png") %>
       <% end %>
       <%= link_to auth_signup_path(return_to: session[:return_to]) do %>
         <span class="signup">注册</span>
